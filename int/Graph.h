@@ -4,7 +4,8 @@ class Graph
 	//Define the basic unit of what constitutes a graph data structure. 
 public:
 	int vertex;
-	Graph *edges;
+	Graph *next;
+	Graph(int vertex);
 
 	Graph();
 	static void addEdge();
