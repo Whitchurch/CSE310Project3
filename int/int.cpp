@@ -33,58 +33,72 @@ int main(int argc, char *argv[])
 		{
 			edgePairs[count].startVertex = input[0] - 48;
 			edgePairs[count].endVertex = input[2] - 48;
+			count++;
 		}
 
 	
 	}
 
+	//Set all index headnodes to nullvalues for the Graph Vertexes
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		G[i] = nullptr;
+	}
 
-	//int vertex[4] = {1,2,3,4};
-	//
-	//// Put in code to test out the Graph Data Structure
-	//Graph** G = new Graph*[4];
-	//
-	//G[0] = new Graph(2);
-	//G[1] = new Graph(3);
-	//G[1]->next = new Graph(5);
-	//G[2] = new Graph(4);
-	//G[3] = new Graph(1);
+	//Step3: Use a simple hash to insert items into Adjaceny List:
+	//Create adjaceny list
+	for (int i = 0; i < noOfEdges; i++)
+	{
+		int key = edgePairs[i].startVertex;
+		key = key - 1;
+		G[key] = Graph::insertIteminGraph(G, key, edgePairs[i].endVertex);
+		
+	}
+
+	for (int i = 0; i < noOfEdges; i++)
+	{
+		int key = edgePairs[i].endVertex;
+		key = key - 1;
+		G[key] = Graph::insertIteminGraph(G, key, edgePairs[i].startVertex);
+
+	}
 
 
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	Graph *next;
-	//	next = G[i];
-	//	//Display contents of the graph:
-	//	while (next != nullptr)
-	//	{
-	//		cout << next->vertex;
-	//		next = next->next;
-	//	}
-	//	cout << "\n";
-	//}
 
-	//
-	////Delete objects in the adjacentlist first.
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	Graph *next;
-	//	Graph *store;
-	//	next = G[i];
-	//	//Display contents of the graph:
-	//	while (next != nullptr)
-	//	{
-	//		store = next->next;
-	//		delete next;
-	//		next = store;
-	//	}
-	//}
-	//
-	////Then delete the array.
-	//delete[] G;
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		Graph *next;
+		next = G[i];
+		//Display contents of the graph:
+		while (next != nullptr)
+		{
+			cout << next->vertex;
+			next = next->next;
+		}
+		cout << "\n";
+	}
 
-	//// Satisfy the Project's return requirements
-	//return 0;
+	
+	//Delete objects in the adjacentlist first.
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		Graph *next;
+		Graph *store;
+		next = G[i];
+		//Display contents of the graph:
+		while (next != nullptr)
+		{
+			store = next->next;
+			delete next;
+			next = store;
+		}
+	}
+	
+	//Then delete the array.
+	delete[] G;
+
+	// Satisfy the Project's return requirements
+	return 0;
 
 }
 
