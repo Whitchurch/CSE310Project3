@@ -121,10 +121,16 @@ int ** Helper_function::PopulateAdjacenyMatrix(int ** M, int noOfVertices, Graph
 	{
 		for (int key = 0; key < noOfVertices; key++)
 		{
-			//G[key]
+			Graph *next = G[key];
+			while (next != nullptr)
+			{
+				int destinationVertex = next->vertex;
+				M[key][destinationVertex] = 1;
+				next = next->next;
+			}
 		}
 
-		return nullptr;
+		return M;
 	}
 	catch (...)
 	{
@@ -149,4 +155,16 @@ void Helper_function::DeleteAdjacenyMatrix(int ** M, int noOfVertices)
 		cout << "Exception: void Helper_function::DeleteAdjacenyMatrix(int ** M, int noOfVertices)" << endl;
 	}
 
+}
+
+void Helper_function::DisplayAdjacenyMatix(int ** M, int noOfVertices)
+{
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		for (int j = 0; j < noOfVertices; j++)
+		{
+			cout << M[i][j];
+		}
+		cout << "\n";
+	}
 }

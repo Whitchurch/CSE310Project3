@@ -64,6 +64,8 @@ int main(int argc, char *argv[])
 		//Initalize the Adjaceny Matrix with infinity value;
 		M = Helper_function::InitializeAdjacenyMatrix(M, noOfVertices);
 
+		//Populate the Adjacent Matri with the edge relationship
+		M = Helper_function::PopulateAdjacenyMatrix(M, noOfVertices,G);
 
 		//Delete the Adjaceny Matrix used by Flyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);

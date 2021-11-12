@@ -11,4 +11,5 @@ public:
 	static int** InitializeAdjacenyMatrix(int **M, int noOfVertices);
 	static int** PopulateAdjacenyMatrix(int **M, int noOfVertices,Graph **G);
 	static void DeleteAdjacenyMatrix(int **M, int noOfVertices);
+	static void DisplayAdjacenyMatix(int **M, int noOfVertices);
 };
