@@ -16,6 +16,9 @@
     <Filter Include="Class">
       <UniqueIdentifier>{60d80c7a-3a16-432c-8ef5-dca3cd825751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helper Functions">
+      <UniqueIdentifier>{a3ae7ed5-0856-4f15-a345-79dfd5d9af30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="int.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="oddDegreeVertices.cpp">
       <Filter>Class</Filter>
     </ClCompile>
+    <ClCompile Include="Helper_function.cpp">
+      <Filter>Helper Functions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
@@ -39,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oddDegreeVertices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

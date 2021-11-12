@@ -153,12 +153,14 @@
   <ItemGroup>
     <ClCompile Include="EdgePairs.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Helper_function.cpp" />
     <ClCompile Include="int.cpp" />
     <ClCompile Include="oddDegreeVertices.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EdgePairs.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Helper_function.h" />
     <ClInclude Include="oddDegreeVertices.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

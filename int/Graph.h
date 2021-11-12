@@ -9,6 +9,7 @@ public:
 
 	Graph();
 	static Graph* insertIteminGraph(Graph **G,int key, int vertex);
+	static Graph** initializeGraph(Graph **G, int noOfVertices);
 	static void addEdge();
 	static void traverseGraphEdgeList();
 

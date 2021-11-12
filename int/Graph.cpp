@@ -137,6 +137,15 @@ Graph * Graph::insertIteminGraph(Graph **G,int key,int vertex)
 	return headNode;
 }
 
+Graph ** Graph::initializeGraph(Graph ** G, int noOfVertices)
+{
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		G[i] = nullptr;
+	}
+	return G;
+}
+
 void Graph::addEdge()
 {
 }

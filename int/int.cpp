@@ -5,6 +5,7 @@
 #include "Graph.h"
 #include "EdgePairs.h"
 #include "oddDegreeVertices.h"
+#include "Helper_function.h"
 #include<string>
 using namespace std;
 int main(int argc, char *argv[])
@@ -24,15 +25,15 @@ int main(int argc, char *argv[])
 	{
 		if (noOfVertices == 0 || noOfEdges == 0)
 		{
-			noOfVertices = (int)input[0] - 48;
-			noOfEdges = (int)input[2] - 48;
+			noOfVertices = (int)input[0] - 48;	// Read the number of vertices
+			noOfEdges = (int)input[2] - 48;		// Read the number of edges				
 			G = new Graph*[noOfVertices];
 			edgePairs = new EdgePairs[noOfEdges];
 		}
 
 		else if (edgePairs != nullptr)
 		{
-			edgePairs[count].startVertex = input[0] - 48;
+			edgePairs[count].startVertex = input[0] - 48; // Read in all the edge pairs
 			edgePairs[count].endVertex = input[2] - 48;
 			count++;
 		}
@@ -41,10 +42,7 @@ int main(int argc, char *argv[])
 	}
 
 	//Set all index headnodes to nullvalues for the Graph Vertexes
-	for (int i = 0; i < noOfVertices; i++)
-	{
-		G[i] = nullptr;
-	}
+	G = Graph::initializeGraph(G,noOfVertices);
 
 	//Step3: Use a simple hash to insert items into Adjaceny List:
 	//Create adjacency list
@@ -67,67 +65,18 @@ int main(int argc, char *argv[])
 	//Find out the odd vertices
 	//Create the oddvertex list
 	oddDegreeVertices *head = nullptr;
-	for (int i = 0; i < noOfVertices; i++)
-	{
-		Graph *next;
-		next = G[i];
-		int count = 0;
-		
-		
-		while (next != nullptr)
-		{
-			count++;
-			next = next->next;
-		}
-		if (count % 2 == 0)
-		{
-			/*cout << "Vertex :" << i+1 << " is of even degree" << endl;*/
-		}
-		else
-		{
-			/*cout << "Vertex :" << i+1 << " is of odd degree" << endl;*/
-		    head = oddDegreeVertices::populateOddDegreeVerticeList(head, i + 1);
-		}
+	
+	//Create the AdjacenyList
+	head = oddDegreeVertices::createOddDegreeVerticesList(G, head, noOfVertices);
 
-	}
+	//Display Graph
+	Helper_function::DisplayGraph(G, noOfVertices);
+	
+	//Display odd Graph
+	Helper_function::DisplayOddVertex(head);
 
-
-	//Display the Graph contents.
-	for (int i = 0; i < noOfVertices; i++)
-	{
-		Graph *next;
-		next = G[i];
-		//Display contents of the graph:
-		while (next != nullptr)
-		{
-			cout << next->vertex;
-			next = next->next;
-		}
-		cout << "\n";
-	}
-
-	//Display the items in the oddVertex List:
-	oddDegreeVertices *next = head;
-	while (next != nullptr)
-	{
-		cout << next->vertex;
-		next = next->next;
-	}
-	cout << "\n";
 	//Delete objects in the adjacentlist first.
-	for (int i = 0; i < noOfVertices; i++)
-	{
-		Graph *next;
-		Graph *store;
-		next = G[i];
-		//Display contents of the graph:
-		while (next != nullptr)
-		{
-			store = next->next;
-			delete next;
-			next = store;
-		}
-	}
+	Helper_function::DeleteAdjacenyList(G, noOfVertices);
 	
 	//Then delete the array.
 	delete[] G;

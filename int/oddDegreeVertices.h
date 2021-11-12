@@ -8,5 +8,6 @@ public:
 	oddDegreeVertices();
 	oddDegreeVertices(int vertex);
 	static oddDegreeVertices* populateOddDegreeVerticeList(oddDegreeVertices *head,int vertex);
+	static oddDegreeVertices* createOddDegreeVerticesList(Graph **G,oddDegreeVertices *head, int noOfVertices);
 };
 
