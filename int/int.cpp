@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "EdgePairs.h"
+#include "oddDegreeVertices.h"
 #include<string>
 using namespace std;
 int main(int argc, char *argv[])
@@ -64,12 +65,15 @@ int main(int argc, char *argv[])
 	}
 
 	//Find out the odd vertices
+	//Create the oddvertex list
+	oddDegreeVertices *head = nullptr;
 	for (int i = 0; i < noOfVertices; i++)
 	{
 		Graph *next;
 		next = G[i];
 		int count = 0;
-		//Display contents of the graph:
+		
+		
 		while (next != nullptr)
 		{
 			count++;
@@ -77,13 +81,14 @@ int main(int argc, char *argv[])
 		}
 		if (count % 2 == 0)
 		{
-			cout << "Vertex :" << i+1 << " is of even degree" << endl;
+			/*cout << "Vertex :" << i+1 << " is of even degree" << endl;*/
 		}
 		else
 		{
-			cout << "Vertex :" << i+1 << " is of odd degree" << endl;
+			/*cout << "Vertex :" << i+1 << " is of odd degree" << endl;*/
+		    head = oddDegreeVertices::populateOddDegreeVerticeList(head, i + 1);
 		}
-		cout << "\n";
+
 	}
 
 
@@ -101,7 +106,14 @@ int main(int argc, char *argv[])
 		cout << "\n";
 	}
 
-	
+	//Display the items in the oddVertex List:
+	oddDegreeVertices *next = head;
+	while (next != nullptr)
+	{
+		cout << next->vertex;
+		next = next->next;
+	}
+	cout << "\n";
 	//Delete objects in the adjacentlist first.
 	for (int i = 0; i < noOfVertices; i++)
 	{

@@ -27,12 +27,18 @@
     <ClCompile Include="EdgePairs.cpp">
       <Filter>Class</Filter>
     </ClCompile>
+    <ClCompile Include="oddDegreeVertices.cpp">
+      <Filter>Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EdgePairs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oddDegreeVertices.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
