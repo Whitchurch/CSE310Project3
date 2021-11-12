@@ -88,52 +88,6 @@ Graph * Graph::insertIteminGraph(Graph **G,int key,int vertex)
 
 	}
 
-	//else
-	//{
-
-	//	while (next != nullptr)
-	//	{
-	//		//if item greater than prev, but less than next insert it inbetween.
-	//		if (prev != nullptr)
-	//		{
-	//			if (prev->vertex < vertex < next->vertex)
-	//			{
-	//				Graph *newItem = new Graph(vertex);
-	//				newItem->next = next;
-	//				prev->next = newItem;
-	//			}
-	//			else
-	//			{
-	//				prev = next;
-	//				next = next->next;
-	//			}
-	//		}
-	//		else
-	//		{
-	//			if (vertex < next->vertex)
-	//			{
-	//				Graph *newItem = new Graph(vertex);
-	//				newItem->next = next;
-	//				headNode = newItem;
-	//			}
-	//			else
-	//			{
-	//				prev = next;
-	//				next = next->next;
-	//				if (next == nullptr)
-	//				{
-	//					next = new Graph(vertex);
-	//					return headNode;
-	//				}
-
-	//			}
-	//		}
-
-	//		
-	//	}
-
-	//}
-
 	return headNode;
 }
 
@@ -146,10 +100,26 @@ Graph ** Graph::initializeGraph(Graph ** G, int noOfVertices)
 	return G;
 }
 
-void Graph::addEdge()
+Graph ** Graph::createGraph(Graph ** G, int noOfEdges, EdgePairs * edgePairs)
 {
+	for (int i = 0; i < noOfEdges; i++)
+	{
+		int key = edgePairs[i].startVertex;
+		key = key - 1;
+		G[key] = Graph::insertIteminGraph(G, key, edgePairs[i].endVertex);
+
+	}
+
+	for (int i = 0; i < noOfEdges; i++)
+	{
+		int key = edgePairs[i].endVertex;
+		key = key - 1;
+		G[key] = Graph::insertIteminGraph(G, key, edgePairs[i].startVertex);
+
+	}
+	
+	return G;
 }
 
-void Graph::traverseGraphEdgeList()
-{
-}
+
+
