@@ -1,6 +1,8 @@
 #include "Graph.h"
 #include "oddDegreeVertices.h"
+#include<iostream>
 
+using namespace std;
 oddDegreeVertices::oddDegreeVertices()
 {
 	this->vertex = 0;
@@ -16,53 +18,71 @@ oddDegreeVertices::oddDegreeVertices(int vertex)
 
 oddDegreeVertices* oddDegreeVertices::populateOddDegreeVerticeList(oddDegreeVertices *head, int vertex)
 {
-	oddDegreeVertices *next;
-	next = head;
-	if (head == nullptr)
+	try
 	{
-		head = new oddDegreeVertices(vertex);
-		return head;
-	}
-	else
-	{
-		
-		
-		while (next->next != nullptr)
+		oddDegreeVertices *next;
+		next = head;
+		if (head == nullptr)
+		{
+			head = new oddDegreeVertices(vertex);
+			return head;
+		}
+		else
 		{
 
-			next = next->next;
 
-		}
+			while (next->next != nullptr)
+			{
+
+				next = next->next;
+
+			}
 			next->next = new oddDegreeVertices(vertex);
 			return head;
-		
+
+		}
 	}
+	catch (...)
+	{
+		cout << "Exception: oddDegreeVertices* oddDegreeVertices::populateOddDegreeVerticeList(oddDegreeVertices *head, int vertex)" << endl;
+	}
+
+
 }
 
 oddDegreeVertices* oddDegreeVertices::createOddDegreeVerticesList(Graph **G,oddDegreeVertices * head, int noOfVertices)
 {
-	for (int i = 0; i < noOfVertices; i++)
+	try
 	{
-		Graph *next;
-		next = G[i];
-		int count = 0;
+		for (int i = 0; i < noOfVertices; i++)
+		{
+			Graph *next;
+			next = G[i];
+			int count = 0;
 
 
-		while (next != nullptr)
-		{
-			count++;
-			next = next->next;
-		}
-		if (count % 2 == 0)
-		{
-			/*cout << "Vertex :" << i+1 << " is of even degree" << endl;*/
-		}
-		else
-		{
-			/*cout << "Vertex :" << i+1 << " is of odd degree" << endl;*/
-			head = oddDegreeVertices::populateOddDegreeVerticeList(head, i + 1);
-		}
+			while (next != nullptr)
+			{
+				count++;
+				next = next->next;
+			}
+			if (count % 2 == 0)
+			{
+				/*cout << "Vertex :" << i+1 << " is of even degree" << endl;*/
+			}
+			else
+			{
+				/*cout << "Vertex :" << i+1 << " is of odd degree" << endl;*/
+				head = oddDegreeVertices::populateOddDegreeVerticeList(head, i + 1);
+			}
 
+		}
+		return head;
 	}
-	return head;
+	catch (...)
+	{
+		cout << "Exception: oddDegreeVertices* oddDegreeVertices::createOddDegreeVerticesList(Graph **G,oddDegreeVertices * head, int noOfVertices)" << endl;
+	}
+
+
 }

@@ -56,6 +56,16 @@ int main(int argc, char *argv[])
 		//Create the AdjacenyList
 		head = oddDegreeVertices::createOddDegreeVerticesList(G, head, noOfVertices);
 
+		
+		//Create Adjaceny Matrix to be used by the Floyd-Warshall Algorithm
+		int **M = nullptr;
+		M = Helper_function::CreateAdjacenyMatrix(M, noOfVertices);
+
+
+
+		//Delete the Adjaceny Matrix used by Flyd-Warshall Algorithm
+		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);
+
 		//Display Graph
 		Helper_function::DisplayGraph(G, noOfVertices);
 
