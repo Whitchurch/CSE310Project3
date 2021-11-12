@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	}
 
 	//Step3: Use a simple hash to insert items into Adjaceny List:
-	//Create adjaceny list
+	//Create adjacency list
 	for (int i = 0; i < noOfEdges; i++)
 	{
 		int key = edgePairs[i].startVertex;
@@ -63,8 +63,31 @@ int main(int argc, char *argv[])
 
 	}
 
+	//Find out the odd vertices
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		Graph *next;
+		next = G[i];
+		int count = 0;
+		//Display contents of the graph:
+		while (next != nullptr)
+		{
+			count++;
+			next = next->next;
+		}
+		if (count % 2 == 0)
+		{
+			cout << "Vertex :" << i+1 << " is of even degree" << endl;
+		}
+		else
+		{
+			cout << "Vertex :" << i+1 << " is of odd degree" << endl;
+		}
+		cout << "\n";
+	}
 
 
+	//Display the Graph contents.
 	for (int i = 0; i < noOfVertices; i++)
 	{
 		Graph *next;
