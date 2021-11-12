@@ -67,6 +67,9 @@ int main(int argc, char *argv[])
 		//Populate the Adjacent Matri with the edge relationship
 		M = Helper_function::PopulateAdjacenyMatrix(M, noOfVertices,G);
 
+		//Display the Adjacency Matrix:
+		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
+
 		//Delete the Adjaceny Matrix used by Flyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);
 

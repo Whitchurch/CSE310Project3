@@ -4,7 +4,7 @@
 #include<iostream>
 using namespace std;
 
-const int Infinity = 1000000;
+const int Infinity = 0;
 void Helper_function::DeleteAdjacenyList(Graph **G,int noOfVertices)
 {
 	try
@@ -125,7 +125,7 @@ int ** Helper_function::PopulateAdjacenyMatrix(int ** M, int noOfVertices, Graph
 			while (next != nullptr)
 			{
 				int destinationVertex = next->vertex;
-				M[key][destinationVertex] = 1;
+				M[key][destinationVertex-1] = 1;
 				next = next->next;
 			}
 		}
@@ -145,6 +145,7 @@ void Helper_function::DeleteAdjacenyMatrix(int ** M, int noOfVertices)
 	{
 		for (int i = 0; i < noOfVertices; i++)
 		{
+
 			delete[] M[i];
 		}
 
