@@ -4,6 +4,7 @@
 #include<iostream>
 using namespace std;
 
+const int Infinity = 1000000;
 void Helper_function::DeleteAdjacenyList(Graph **G,int noOfVertices)
 {
 	try
@@ -89,6 +90,45 @@ int ** Helper_function::CreateAdjacenyMatrix(int ** M, int noOfVertices)
 	catch (...)
 	{
 		cout << "Exception: int ** Helper_function::CreateAdjacenyMatrix(int ** M, int noOfVertices)" << endl;
+	}
+
+}
+
+int ** Helper_function::InitializeAdjacenyMatrix(int ** M, int noOfVertices)
+{
+	try
+	{
+		for (int i = 0; i < noOfVertices; i++)
+		{
+			for (int j = 0; j < noOfVertices; j++)
+			{
+				M[i][j] = Infinity;
+			}
+		}
+
+		return M;
+	}
+	catch (...)
+	{
+		cout << "Exception: int ** Helper_function::InitializeAdjacenyMatrix(int ** M, int noOfVertices)" << endl;
+	}
+
+}
+
+int ** Helper_function::PopulateAdjacenyMatrix(int ** M, int noOfVertices, Graph ** G)
+{
+	try
+	{
+		for (int key = 0; key < noOfVertices; key++)
+		{
+			//G[key]
+		}
+
+		return nullptr;
+	}
+	catch (...)
+	{
+		cout << "Exception: int ** Helper_function::PopulateAdjacenyMatrix(int ** M, int noOfVertices, Graph ** G)" << endl;
 	}
 
 }
