@@ -4,7 +4,8 @@
 #include<iostream>
 using namespace std;
 
-const int Infinity = 0;
+const int Infinity = 99999;
+const int selfLoop = 0;
 void Helper_function::DeleteAdjacenyList(Graph **G,int noOfVertices)
 {
 	try
@@ -102,7 +103,15 @@ int ** Helper_function::InitializeAdjacenyMatrix(int ** M, int noOfVertices)
 		{
 			for (int j = 0; j < noOfVertices; j++)
 			{
-				M[i][j] = Infinity;
+				if (i == j)
+				{
+					M[i][j] = selfLoop;
+				}
+				else
+				{
+					M[i][j] = Infinity;
+				}
+				
 			}
 		}
 
@@ -164,8 +173,39 @@ void Helper_function::DisplayAdjacenyMatix(int ** M, int noOfVertices)
 	{
 		for (int j = 0; j < noOfVertices; j++)
 		{
-			cout << M[i][j];
+			cout << M[i][j]<<"\t";
 		}
 		cout << "\n";
 	}
+}
+
+int ** Helper_function::FloydWarshalAlgorithm(int ** M, int noOfVertices)
+{
+	try
+	{
+		int k = noOfVertices; // intermediate nodes we plan to visit
+		int i = noOfVertices; // starting node.
+		int j = noOfVertices; // destination node.
+
+		for (int k = 0; k < noOfVertices; k++)
+		{
+			for (int i = 0; i < noOfVertices; i++)
+			{
+				for (int j = 0; j < noOfVertices; j++)
+				{
+					if (M[i][j] > (M[i][k] + M[k][j]))
+					{
+						M[i][j] = (M[i][k] + M[k][j]);
+					}
+				}
+			}
+		}
+
+		return M;
+	}
+	catch (...)
+	{
+		cout << "Exception: int ** Helper_function::FloydWarshalAlgorithm(int ** M, int noOfVertices)" << endl;
+	}
+	
 }

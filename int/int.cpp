@@ -67,12 +67,14 @@ int main(int argc, char *argv[])
 		//Populate the Adjacent Matri with the edge relationship
 		M = Helper_function::PopulateAdjacenyMatrix(M, noOfVertices,G);
 
-		//Display the Adjacency Matrix:
+		//Display the Adjacency Matrix BEFORE FLOYD-WARSHALL ALGORITHM:
 		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 		//Calculate the Pair-Wise shortest path using Floyd-Warshall Algorithm
+		M = Helper_function::FloydWarshalAlgorithm(M, noOfVertices);
 
-
+		//Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
+		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 		//Delete the Adjaceny Matrix used by Floyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);
