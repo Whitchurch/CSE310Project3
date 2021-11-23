@@ -36,6 +36,9 @@
     <ClCompile Include="Helper_function.cpp">
       <Filter>Helper Functions</Filter>
     </ClCompile>
+    <ClCompile Include="weightedEdges.cpp">
+      <Filter>Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helper_function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="weightedEdges.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

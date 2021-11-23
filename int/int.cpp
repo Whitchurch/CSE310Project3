@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "EdgePairs.h"
+#include "weightedEdges.h"
 #include "oddDegreeVertices.h"
 #include "Helper_function.h"
 #include<string>
@@ -101,10 +102,31 @@ int main(int argc, char *argv[])
 			endVerted = head;
 			startVertex = startVertex->next;
 		}
-
-
+		
 		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
 
+		weightedEdges *headWeightedList = nullptr;
+
+		for (int i = 0; i < noOfVertices; i++)
+		{
+			for (int j = 0; j < noOfVertices; j++)
+			{
+				if (M_reduced[i][j] != 0) // This implies an weight and edge exists. Recostruct the start and end vertex, from the matrix position meta-data
+				{
+					weightedEdges *w = new weightedEdges();
+					w->weight = M_reduced[i][j];
+					w->startVertex = i + 1;
+					w->endVertex = j + 1;
+
+					headWeightedList = headWeightedList->insertIteminGraph(headWeightedList,w);
+
+				}
+			}
+		}
+
+
+
+		//--- Section to delete all data structures and free up the memory--------------------------------///
 		//Delete the Adjaceny Matrix used by Floyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);
 
