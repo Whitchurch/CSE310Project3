@@ -76,8 +76,40 @@ int main(int argc, char *argv[])
 		//Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
 		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
+
+		int **M_reduced = nullptr;
+		M_reduced = Helper_function::CreateAdjacenyMatrix(M_reduced, noOfVertices);
+
+		for (int i = 0; i < noOfVertices; i++)
+		{
+			for (int j = 0; j < noOfVertices; j++)
+			{
+				M_reduced[i][j] = 0;
+			}
+		}
+
+		oddDegreeVertices *startVertex = head;
+		oddDegreeVertices *endVerted = head;
+
+		while (startVertex != nullptr)
+		{
+			while (endVerted != nullptr)
+			{
+				M_reduced[(startVertex->vertex) - 1][(endVerted->vertex) - 1] = M[(startVertex->vertex) - 1][(endVerted->vertex) - 1];
+				endVerted = endVerted->next;
+			}
+			endVerted = head;
+			startVertex = startVertex->next;
+		}
+
+
+		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
+
 		//Delete the Adjaceny Matrix used by Floyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);
+
+		Helper_function::DeleteAdjacenyMatrix(M_reduced, noOfVertices);
+
 
 		//Display Graph
 		Helper_function::DisplayGraph(G, noOfVertices);
