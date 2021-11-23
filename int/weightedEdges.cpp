@@ -83,6 +83,31 @@ weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weighte
 								}
 							}
 						}
+						else if (G->startVertex > next->startVertex) // If start vettex is equal
+						{
+							prev = next;
+							next = next->next;
+
+							if (next == nullptr)
+							{
+								next = G;
+								prev->next = next;
+								return headNode;
+							}
+						}
+
+					}
+					else if (G->startVertex > next->startVertex) // If start vettex is equal
+					{
+						prev = next;
+						next = next->next;
+
+						if (next == nullptr)
+						{
+							next = G;
+							prev->next = next;
+							return headNode;
+						}
 					}
 
 				}
@@ -128,6 +153,31 @@ weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weighte
 									return headNode;
 								}
 							}
+						}
+						else if (G->startVertex > next->startVertex) // If start vettex is equal
+						{
+							prev = next;
+							next = next->next;
+
+							if (next == nullptr)
+							{
+								next = G;
+								prev->next = next;
+								return headNode;
+							}
+						}
+
+					}
+					else if (G->startVertex > next->startVertex) // If start vettex is equal
+					{
+						prev = next;
+						next = next->next;
+
+						if (next == nullptr)
+						{
+							next = G;
+							prev->next = next;
+							return headNode;
 						}
 					}
 					else

@@ -140,6 +140,14 @@ int main(int argc, char *argv[])
 		}
 
 
+		while (headWeightedList != nullptr)
+		{
+			//cout << headWeightedList->weight;
+			cout << headWeightedList->startVertex;
+			cout << headWeightedList->endVertex << endl;
+
+			headWeightedList = headWeightedList->next;
+		}
 
 		//Now  Use Greedy method to add in the perfect matching edges, from the sorted list of edges:
 		//Only add in edges , which do not share common vertices:
