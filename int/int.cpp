@@ -103,6 +103,7 @@ int main(int argc, char *argv[])
 			startVertex = startVertex->next;
 		}
 		
+		//Display the reduced subset of the Floyd Warshal Matrix
 		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
 
 		weightedEdges *headWeightedList = nullptr;
@@ -118,11 +119,46 @@ int main(int argc, char *argv[])
 					w->startVertex = i + 1;
 					w->endVertex = j + 1;
 
+					//Insert the edges in a sorted manner.
 					headWeightedList = headWeightedList->insertIteminGraph(headWeightedList,w);
 
 				}
 			}
 		}
+
+
+
+		//Now  Use Greedy method to add in the perfect matching edges, from the sorted list of edges:
+		//Only add in edges , which do not share common vertices:
+		weightedEdges *greedyList = nullptr;
+		weightedEdges *next;
+		next = headWeightedList;
+
+		while (next != nullptr)
+		{
+			if (greedyList == nullptr)
+			{
+				greedyList = next;
+			}
+			else
+			{
+				while (greedyList != nullptr)
+				{
+					greedyList = greedyList->next;
+				}
+
+				if (greedyList == nullptr)
+				{
+					greedyList = next;
+				}
+				
+			}	
+			next = next->next;
+		}
+
+
+		//Insert Virtual Edges.
+		//Find Euler circuit.
 
 
 

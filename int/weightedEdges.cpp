@@ -94,6 +94,42 @@ weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weighte
 						prev->next = G;
 						return headNode;
 					}
+					else if (G->weight == next->weight)
+					{
+						//Rule out reverse edge scenario
+						if (G->startVertex == next->endVertex && G->endVertex == next->startVertex)
+						{
+							//Don't add anything just return the current node as it.
+							return headNode;
+						}
+						else if (G->startVertex < next->startVertex) //If start node less
+						{
+							G->next = next;
+							headNode = G;
+							return headNode;
+						}
+						else if (G->startVertex == next->startVertex) // If start vettex is equal
+						{
+							if (G->endVertex < next->endVertex) //check the end vertex
+							{
+								G->next = next;
+								headNode = G;
+								return headNode;
+							}
+							else if (G->endVertex > next->endVertex)
+							{
+								prev = next;
+								next = next->next;
+
+								if (next == nullptr)
+								{
+									next = G;
+									prev->next = next;
+									return headNode;
+								}
+							}
+						}
+					}
 					else
 					{
 						prev = next;
