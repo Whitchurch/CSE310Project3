@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
 	try
 	{
+		string token[2];
 		//Step1: Get the filename
 		string input;
 
@@ -25,18 +26,30 @@ int main(int argc, char *argv[])
 		//Step2: Read the contents of the  file
 		while (getline(cin, input))
 		{
+
+			int i_token = 0;
+			string delimiter = " ";
+
+			while (i_token < 2)
+			{
+
+				token[i_token] = input.substr(0, input.find(delimiter));
+				input = input.erase(0, input.find(delimiter) + delimiter.length());
+				i_token++;
+			}
+
 			if (noOfVertices == 0 || noOfEdges == 0)
 			{
-				noOfVertices = (int)input[0] - 48;	// Read the number of vertices
-				noOfEdges = (int)input[2] - 48;		// Read the number of edges				
+				noOfVertices = stoi(token[0]);	// Read the number of vertices
+				noOfEdges = stoi(token[1]);		// Read the number of edges				
 				G = new Graph*[noOfVertices];
 				edgePairs = new EdgePairs[noOfEdges];
 			}
 
 			else if (edgePairs != nullptr)
 			{
-				edgePairs[count].startVertex = input[0] - 48; // Read in all the edge pairs
-				edgePairs[count].endVertex = input[2] - 48;
+				edgePairs[count].startVertex = stoi(token[0]); // Read in all the edge pairs
+				edgePairs[count].endVertex = stoi(token[1]);
 				count++;
 			}
 
