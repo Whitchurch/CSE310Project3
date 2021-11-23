@@ -132,10 +132,12 @@ int main(int argc, char *argv[])
 		//Only add in edges , which do not share common vertices:
 		weightedEdges *greedyList = nullptr;
 		weightedEdges *next;
+		weightedEdges *prev;
 		next = headWeightedList;
-
+		bool canAdd = false;
 		while (next != nullptr)
 		{
+			canAdd = false;
 			if (greedyList == nullptr)
 			{
 				greedyList = next;
@@ -144,10 +146,15 @@ int main(int argc, char *argv[])
 			{
 				while (greedyList != nullptr)
 				{
+					if (greedyList->startVertex != next->startVertex && greedyList->startVertex != next->endVertex && greedyList->endVertex != next->startVertex && greedyList->endVertex != next->endVertex)
+					{
+						canAdd = true;
+					}
 					greedyList = greedyList->next;
 				}
 
-				if (greedyList == nullptr)
+				//Only add if edge shares no edge with existing edges.
+				if (canAdd == true)
 				{
 					greedyList = next;
 				}
