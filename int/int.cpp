@@ -121,6 +121,8 @@ int main(int argc, char *argv[])
 
 		weightedEdges *headWeightedList = nullptr;
 
+		//Part 1 of Greedy Algorithm:
+		//This section is the code to sort the edges, by insertng them into the linkedlist by increasing weight
 		for (int i = 0; i < noOfVertices; i++)
 		{
 			for (int j = 0; j < noOfVertices; j++)
@@ -139,51 +141,88 @@ int main(int argc, char *argv[])
 			}
 		}
 
+	
 
-		while (headWeightedList != nullptr)
-		{
-			//cout << headWeightedList->weight;
-			cout << headWeightedList->startVertex;
-			cout << headWeightedList->endVertex << endl;
+		//Code to view the sorted list
+		//while (headWeightedList != nullptr)
+		//{
+		//	//cout << headWeightedList->weight;
+		//	cout << headWeightedList->startVertex;
+		//	cout << headWeightedList->endVertex << endl;
 
-			headWeightedList = headWeightedList->next;
-		}
+		//	headWeightedList = headWeightedList->next;
+		//}
 
+		//Part 2 of Greedy Algorithm:
 		//Now  Use Greedy method to add in the perfect matching edges, from the sorted list of edges:
 		//Only add in edges , which do not share common vertices:
 		weightedEdges *greedyList = nullptr;
 		weightedEdges *next;
-		weightedEdges *prev;
+		weightedEdges *greedyNext;
+		weightedEdges *greedyPrev = nullptr;
+		
 		next = headWeightedList;
-		bool canAdd = false;
-		while (next != nullptr)
+		greedyNext = greedyList;
+		while (next != nullptr) //Go thru the sorted edge list
 		{
-			canAdd = false;
+			bool canAdd = true;
+	
 			if (greedyList == nullptr)
 			{
-				greedyList = next;
+				weightedEdges *Gitem = new weightedEdges();
+				Gitem->weight = next->weight;
+				Gitem->startVertex = next->startVertex;
+				Gitem->endVertex = next->endVertex;
+				Gitem->next = nullptr;
+
+				greedyList = Gitem;
 			}
 			else
 			{
-				while (greedyList != nullptr)
+				greedyNext = greedyList;
+				while (greedyNext != nullptr)
 				{
-					if (greedyList->startVertex != next->startVertex && greedyList->startVertex != next->endVertex && greedyList->endVertex != next->startVertex && greedyList->endVertex != next->endVertex)
+	
+					if (greedyNext->startVertex != next->startVertex && greedyNext->startVertex != next->endVertex && greedyNext->endVertex != next->startVertex && greedyNext->endVertex != next->endVertex)
 					{
 						canAdd = true;
+
 					}
-					greedyList = greedyList->next;
+					else
+					{
+						canAdd = false;
+						break;
+					}
+					greedyPrev = greedyNext;
+					greedyNext = greedyNext->next;
+					
 				}
 
-				//Only add if edge shares no edge with existing edges.
 				if (canAdd == true)
 				{
-					greedyList = next;
+					weightedEdges *Gitem = new weightedEdges();
+					Gitem->weight = next->weight;
+					Gitem->startVertex = next->startVertex;
+					Gitem->endVertex = next->endVertex;
+					Gitem->next = nullptr;
+
+					greedyPrev->next = Gitem;
 				}
+
 				
 			}	
 			next = next->next;
 		}
 
+		//Code to view the greedy list
+		//while (greedyList != nullptr)
+		//{
+		//	//cout << headWeightedList->weight;
+		//	cout << greedyList->startVertex;
+		//	cout << greedyList->endVertex << endl;
+
+		//	greedyList = greedyList->next;
+		//}
 
 		//Insert Virtual Edges.
 		//Find Euler circuit.
