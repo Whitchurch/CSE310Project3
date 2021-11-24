@@ -15,4 +15,6 @@ public:
 	static void DisplayAdjacenyMatix(int **M, int noOfVertices);
 	static int** FloydWarshalAlgorithm(int **M, int noOfVertices);
 	static void displayListValues(weightedEdges *W);
+	static void DeleteOddVertex(oddDegreeVertices *OddVertexList);
+	static void DeleteWeightedVertex(weightedEdges *W);
 };

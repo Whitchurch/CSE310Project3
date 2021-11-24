@@ -236,4 +236,40 @@ void Helper_function::displayListValues(weightedEdges * W)
 
 }
 
+void Helper_function::DeleteOddVertex(oddDegreeVertices * OddVertexList)
+{
+	oddDegreeVertices *prev;
+	oddDegreeVertices *next;
+
+	prev = OddVertexList;
+	next = OddVertexList;
+
+	while (next != nullptr)
+	{
+		prev = next;
+		next = next->next;
+		delete(prev);
+		prev = next;
+	}
+
+}
+
+void Helper_function::DeleteWeightedVertex(weightedEdges * W)
+{
+	weightedEdges *prev;
+	weightedEdges *next;
+
+	prev = W;
+	next = W;
+
+	while (next != nullptr)
+	{
+		prev = next;
+		next = next->next;
+		delete(prev);
+		prev = next;
+	}
+
+}
+
 		

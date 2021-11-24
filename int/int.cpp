@@ -235,8 +235,15 @@ int main(int argc, char *argv[])
 		//Display odd Graph
 		Helper_function::DisplayOddVertex(head);
 
+		//Delete odd VertexList
+		Helper_function::DeleteOddVertex(head);
+
 		//Delete objects in the adjacentlist first.
 		Helper_function::DeleteAdjacenyList(G, noOfVertices);
+
+		//Delete weighted edge lists both greedy and the full sorted weighted edge list.
+		Helper_function::DeleteWeightedVertex(greedyList);
+		Helper_function::DeleteWeightedVertex(headWeightedList);
 
 		//Then delete the array.
 		delete[] G;
