@@ -113,13 +113,14 @@ weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weighte
 				}
 				else if (prev != nullptr)
 				{
-					if (prev->weight < G->weight && G->weight < next->weight)
+/*					if (prev->weight < G->weight && G->weight < next->weight)
 					{
 						G->next = next;
 						prev->next = G;
 						return headNode;
 					}
-					else if (G->weight == next->weight)
+					else*/ 
+					if (G->weight == next->weight)
 					{
 						//Rule out reverse edge scenario
 						if (G->startVertex == next->endVertex && G->endVertex == next->startVertex)
@@ -166,6 +167,13 @@ weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weighte
 								return headNode;
 							}
 						}
+
+					}
+					else if (G->weight < next->weight)
+					{
+						G->next = next;
+						prev->next = G;
+						return headNode;
 
 					}
 					else if (G->startVertex > next->startVertex) // If start vettex is equal
