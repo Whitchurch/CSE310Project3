@@ -1,5 +1,6 @@
 #include"Graph.h"
 #include "oddDegreeVertices.h"
+#include "weightedEdges.h"
 #pragma once
 class Helper_function
 {
@@ -13,4 +14,5 @@ public:
 	static void DeleteAdjacenyMatrix(int **M, int noOfVertices);
 	static void DisplayAdjacenyMatix(int **M, int noOfVertices);
 	static int** FloydWarshalAlgorithm(int **M, int noOfVertices);
+	static void displayListValues(weightedEdges *W);
 };

@@ -141,18 +141,10 @@ int main(int argc, char *argv[])
 			}
 		}
 
-	
 
-		//Code to view the sorted list
-		//while (headWeightedList != nullptr)
-		//{
-		//	//cout << headWeightedList->weight;
-		//	cout << headWeightedList->startVertex;
-		//	cout << headWeightedList->endVertex << endl;
-
-		//	headWeightedList = headWeightedList->next;
-		//}
-
+		//View the sorted Edge List
+		Helper_function::displayListValues(headWeightedList);
+		
 		//Part 2 of Greedy Algorithm:
 		//Now  Use Greedy method to add in the perfect matching edges, from the sorted list of edges:
 		//Only add in edges , which do not share common vertices:
@@ -214,17 +206,15 @@ int main(int argc, char *argv[])
 			next = next->next;
 		}
 
-		//Code to view the greedy list
-		//while (greedyList != nullptr)
-		//{
-		//	//cout << headWeightedList->weight;
-		//	cout << greedyList->startVertex;
-		//	cout << greedyList->endVertex << endl;
+		//View the greedy selected edge list
+		Helper_function::displayListValues(greedyList);
 
-		//	greedyList = greedyList->next;
-		//}
+
 
 		//Insert Virtual Edges.
+		
+		
+		
 		//Find Euler circuit.
 
 

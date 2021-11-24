@@ -213,4 +213,27 @@ int ** Helper_function::FloydWarshalAlgorithm(int ** M, int noOfVertices)
 	
 }
 
+void Helper_function::displayListValues(weightedEdges * W)
+{
+	try
+	{
+		weightedEdges *greedyList = W;
+		//Code to view the greedy list
+		while (greedyList != nullptr)
+		{
+			//cout << headWeightedList->weight;
+			cout << greedyList->startVertex;
+			cout << greedyList->endVertex << endl;
+
+			greedyList = greedyList->next;
+		}
+	}
+	catch (...)
+	{
+		cout << "Exception: Helper_function::displayListValues(weightedEdges * W)" << endl;
+	}
+
+
+}
+
 		
