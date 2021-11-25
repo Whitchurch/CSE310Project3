@@ -59,11 +59,30 @@ Graph * Graph::insertIteminGraph(Graph **G,int key,int vertex)
 						headNode = newItem;
 						return headNode;
 					}
+					else if (vertex == next->vertex) //adding extra code for the parallel circuits
+					{
+						prev = next;
+						next = next->next;
+
+						Graph *newItem = new Graph(vertex);
+
+						newItem->next = next;
+						prev->next = newItem;
+						return headNode;
+					}
 
 				}
 				else if (prev != nullptr)
 				{
 					if (prev->vertex < vertex && vertex < next->vertex)
+					{
+						Graph *newItem = new Graph(vertex);
+
+						newItem->next = next;
+						prev->next = newItem;
+						return headNode;
+					}
+					else if (vertex == next->vertex) //adding extra code for the parallel circuits
 					{
 						Graph *newItem = new Graph(vertex);
 

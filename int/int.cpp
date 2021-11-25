@@ -209,7 +209,32 @@ int main(int argc, char *argv[])
 		//View the greedy selected edge list
 		Helper_function::displayListValues(greedyList);
 
+		//Convert the weighted edge to edgepair type. before feeding into create graph function.
+		int greedyCount = 0;
+		EdgePairs *EdgesToInsert = nullptr;
+		weightedEdges *nextToInsert = nullptr;
 
+		nextToInsert = greedyList;
+
+		while (nextToInsert != nullptr)
+		{
+			greedyCount++;
+			nextToInsert = nextToInsert->next;
+		}
+
+		EdgesToInsert = new EdgePairs[greedyCount];
+
+		nextToInsert = greedyList;
+		//Convert weighted edges  EdgePair data type.
+		for (int i = 0; i < greedyCount; i++)
+		{
+			EdgesToInsert[i].startVertex = nextToInsert->startVertex;
+			EdgesToInsert[i].endVertex = nextToInsert->endVertex;
+			nextToInsert = nextToInsert->next;
+		}
+
+
+		G = Graph::createGraph(G, greedyCount, EdgesToInsert);
 
 		//Insert Virtual Edges.
 		//1. Hash using starting edge, into Graph. 
