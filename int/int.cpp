@@ -234,13 +234,10 @@ int main(int argc, char *argv[])
 		}
 
 
+		//Insert Virtual Edges.
 		G = Graph::createGraph(G, greedyCount, EdgesToInsert);
 
-		//Insert Virtual Edges.
-		//1. Hash using starting edge, into Graph. 
-		//2. Insert the endvertex into adjaceny list.
-		//3. Hash using ending vertex into Graph.
-		//4. Insert the start vertes into adjaceny list.
+
 		
 		
 		//Find Euler circuit.
@@ -272,7 +269,8 @@ int main(int argc, char *argv[])
 
 		//Then delete the array.
 		delete[] G;
-
+		delete[] edgePairs;
+		delete[] EdgesToInsert;
 		// Satisfy the Project's return requirements
 		return 0;
 	}
