@@ -236,11 +236,10 @@ int main(int argc, char *argv[])
 
 		//Insert Virtual Edges.
 		G = Graph::createGraph(G, greedyCount, EdgesToInsert);
-
-
-		
+	
 		
 		//Find Euler circuit.
+
 
 
 
