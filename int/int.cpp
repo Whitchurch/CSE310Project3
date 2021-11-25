@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Graph.h"
+#include "Stack.h"
 #include "EdgePairs.h"
 #include "weightedEdges.h"
 #include "oddDegreeVertices.h"
@@ -239,10 +240,10 @@ int main(int argc, char *argv[])
 	
 		
 		//Find Euler circuit.
-		EdgePairs *Stack = nullptr;
+		Stack *Stack1 = nullptr;
 		int startVertexIndex = 0;
 
-		Helper_function::FindEulerCircuit(G, Stack, startVertexIndex,noOfVertices);
+		Helper_function::FindEulerCircuit(G, Stack1, startVertexIndex,noOfVertices);
 
 		//Graph *vertexToRemoveNext = nullptr;
 		//Graph *vertexToRemovePrev = nullptr;
