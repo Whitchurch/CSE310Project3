@@ -272,4 +272,67 @@ void Helper_function::DeleteWeightedVertex(weightedEdges * W)
 
 }
 
+void Helper_function::FindEulerCircuit(Graph ** G,EdgePairs * Stack, int startVertexIndex,int noOfVertices)
+{
+	Graph *vertexToRemoveNext = nullptr;
+	Graph *vertexToRemovePrev = nullptr;
+
+
+	int endVertexIndex = G[startVertexIndex]->vertex;
+
+	EdgePairs *newEdgeToIsert = new EdgePairs();
+	newEdgeToIsert->startVertex = startVertexIndex + 1;
+	newEdgeToIsert->endVertex = endVertexIndex;
+
+	if (Stack == nullptr)
+	{
+		Stack = newEdgeToIsert;
+	}
+
+	//Write code to remove the vertex
+	vertexToRemoveNext = G[startVertexIndex];
+	vertexToRemovePrev = G[startVertexIndex];
+	vertexToRemoveNext = vertexToRemoveNext->next;
+	delete(vertexToRemovePrev);
+	G[startVertexIndex] = vertexToRemoveNext;
+
+	//Reverse  the start and end nodes, to remove the reverse from the Adjaceny List:
+	int tempStartVertex = 0;
+	int tempEndVertex = 0;
+
+	tempStartVertex = endVertexIndex - 1;
+	tempEndVertex = startVertexIndex + 1;
+
+	//Write code to remove the vertex
+	vertexToRemoveNext = G[tempStartVertex];
+	vertexToRemovePrev = nullptr;
+	while (vertexToRemoveNext != nullptr)
+	{
+		if (vertexToRemoveNext->vertex == tempEndVertex)
+		{
+			if (vertexToRemovePrev == nullptr)
+			{
+				vertexToRemovePrev = vertexToRemoveNext->next;
+				delete(vertexToRemoveNext);
+				G[tempStartVertex] = vertexToRemovePrev;
+				break;
+			}
+			else
+			{
+				vertexToRemovePrev->next = vertexToRemoveNext->next;
+				delete(vertexToRemoveNext);
+				//G[tempStartVertex] = vertexToRemovePrev;
+				break;
+			}
+
+		}
+
+		vertexToRemovePrev = vertexToRemoveNext;
+		vertexToRemoveNext = vertexToRemoveNext->next;
+	}
+	Helper_function::DisplayGraph(G, noOfVertices);
+	FindEulerCircuit(G, Stack, tempStartVertex,noOfVertices);
+
+}
+
 		

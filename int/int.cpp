@@ -239,8 +239,63 @@ int main(int argc, char *argv[])
 	
 		
 		//Find Euler circuit.
+		EdgePairs *Stack = nullptr;
+		int startVertexIndex = 0;
+
+		Helper_function::FindEulerCircuit(G, Stack, startVertexIndex,noOfVertices);
+
+		//Graph *vertexToRemoveNext = nullptr;
+		//Graph *vertexToRemovePrev = nullptr;
 
 
+		//int startVertexIndex = 0;
+		//int endVertexIndex = G[startVertexIndex]->vertex;
+		//
+		//EdgePairs *newEdgeToIsert = new EdgePairs();
+		//newEdgeToIsert->startVertex = startVertexIndex + 1;
+		//newEdgeToIsert->endVertex = endVertexIndex;
+
+		//if (Stack == nullptr)
+		//{
+		//	Stack = newEdgeToIsert;
+		//}
+
+		////Write code to remove the vertex
+		//vertexToRemoveNext = G[startVertexIndex];
+		//vertexToRemovePrev = G[startVertexIndex];
+		//vertexToRemoveNext = vertexToRemoveNext->next;
+		//delete(vertexToRemovePrev);
+		//G[startVertexIndex] = vertexToRemoveNext;
+
+		////Reverse  the start and end nodes, to remove the reverse from the Adjaceny List:
+		//int tempStartVertex = 0;
+		//int tempEndVertex = 0;
+
+		//tempStartVertex = endVertexIndex-1;
+		//tempEndVertex = startVertexIndex+1;
+
+		////Write code to remove the vertex
+		//vertexToRemoveNext = G[tempStartVertex];
+		//vertexToRemovePrev = G[tempEndVertex];
+		//while (vertexToRemoveNext != nullptr)
+		//{
+		//	if (vertexToRemoveNext->vertex == tempEndVertex)
+		//	{
+		//		vertexToRemovePrev = vertexToRemoveNext->next;
+		//		delete(vertexToRemoveNext);
+		//		G[tempStartVertex] = vertexToRemovePrev;
+		//		break;
+		//	}
+		//	
+		//	vertexToRemovePrev = vertexToRemoveNext;
+		//	vertexToRemoveNext = vertexToRemoveNext->next;
+		//}
+
+
+		//Go to end vertex. Check if reverse exists in the Stack, and remove it from the adjacency list
+
+		// 
+		//Repeat
 
 
 		//--- Section to delete all data structures and free up the memory--------------------------------///
