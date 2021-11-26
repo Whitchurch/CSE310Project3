@@ -208,6 +208,9 @@ int main(int argc, char *argv[])
 			next = next->next;
 		}
 
+		//Put in the logic to get the real edges, that represent the virual edge:
+
+
 		//View the greedy selected edge list
 		Helper_function::displayListValues(greedyList);
 
@@ -247,108 +250,6 @@ int main(int argc, char *argv[])
 		cout << "\n\n" << endl;
 		Helper_function::DisplayGraph(G, noOfVertices);
 		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
-
-		//while (Stack1 != nullptr)
-		//{
-		//	// Pop the reversed edge
-		//	Stack1 = Stack1->PopEdge(Stack1); 
-		//	Stack *temp = Stack1;
-		//	//Add the reversed edge into the Circuit
-		//	if (Circuit1 == nullptr)
-		//	{
-		//		Circuit1 = new Stack();
-		//		Circuit1->reverseNode = temp->reverseNode;
-		//	}
-		//	else
-		//	{
-		//		Stack *prev;
-		//		Stack *next;
-
-		//		prev = Circuit1;
-		//		next = Circuit1;
-		//		while (next != nullptr)
-		//		{
-		//			prev = next;
-		//			next = next->next;
-		//			if (next == nullptr)
-		//			{
-		//				next = new Stack();
-		//				next->reverseNode = temp->reverseNode;
-		//				prev->next = next;
-		//				break;
-		//			}
-		//			
-		//		}
-
-		//	}
-
-		//	
-		//	//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
-		//	//Do a Euler pass on the new Startvertex. If any exist.
-		//	int endvertexStack1 = (temp->reverseNode.endVertex - 1);
-		//	Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
-
-		//	Stack1 = temp;
-		//	if (Stack1->node== nullptr)
-		//	{
-		//		delete[] Stack1;
-		//		break;
-		//	}
-		//}
-		
-
-		//Graph *vertexToRemoveNext = nullptr;
-		//Graph *vertexToRemovePrev = nullptr;
-
-
-		//int startVertexIndex = 0;
-		//int endVertexIndex = G[startVertexIndex]->vertex;
-		//
-		//EdgePairs *newEdgeToIsert = new EdgePairs();
-		//newEdgeToIsert->startVertex = startVertexIndex + 1;
-		//newEdgeToIsert->endVertex = endVertexIndex;
-
-		//if (Stack == nullptr)
-		//{
-		//	Stack = newEdgeToIsert;
-		//}
-
-		////Write code to remove the vertex
-		//vertexToRemoveNext = G[startVertexIndex];
-		//vertexToRemovePrev = G[startVertexIndex];
-		//vertexToRemoveNext = vertexToRemoveNext->next;
-		//delete(vertexToRemovePrev);
-		//G[startVertexIndex] = vertexToRemoveNext;
-
-		////Reverse  the start and end nodes, to remove the reverse from the Adjaceny List:
-		//int tempStartVertex = 0;
-		//int tempEndVertex = 0;
-
-		//tempStartVertex = endVertexIndex-1;
-		//tempEndVertex = startVertexIndex+1;
-
-		////Write code to remove the vertex
-		//vertexToRemoveNext = G[tempStartVertex];
-		//vertexToRemovePrev = G[tempEndVertex];
-		//while (vertexToRemoveNext != nullptr)
-		//{
-		//	if (vertexToRemoveNext->vertex == tempEndVertex)
-		//	{
-		//		vertexToRemovePrev = vertexToRemoveNext->next;
-		//		delete(vertexToRemoveNext);
-		//		G[tempStartVertex] = vertexToRemovePrev;
-		//		break;
-		//	}
-		//	
-		//	vertexToRemovePrev = vertexToRemoveNext;
-		//	vertexToRemoveNext = vertexToRemoveNext->next;
-		//}
-
-
-		//Go to end vertex. Check if reverse exists in the Stack, and remove it from the adjacency list
-
-		// 
-		//Repeat
 
 
 		//--- Section to delete all data structures and free up the memory--------------------------------///
