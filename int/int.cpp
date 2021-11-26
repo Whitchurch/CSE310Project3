@@ -245,6 +245,19 @@ int main(int argc, char *argv[])
 
 		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, startVertexIndex,noOfVertices);
 
+		while (Stack1 != nullptr)
+		{
+			Stack *temp = Stack1->PopEdge(Stack1);
+			cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
+			Stack1 = temp;
+			if (Stack1->node== nullptr)
+			{
+				delete[] Stack1;
+				break;
+			}
+		}
+		
+
 		//Graph *vertexToRemoveNext = nullptr;
 		//Graph *vertexToRemovePrev = nullptr;
 

@@ -156,6 +156,7 @@
     <ClCompile Include="Helper_function.cpp" />
     <ClCompile Include="int.cpp" />
     <ClCompile Include="oddDegreeVertices.cpp" />
+    <ClCompile Include="reverseEdgeStack.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="weightedEdges.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Helper_function.h" />
     <ClInclude Include="oddDegreeVertices.h" />
+    <ClInclude Include="reverseEdgeStack.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="weightedEdges.h" />
   </ItemGroup>
