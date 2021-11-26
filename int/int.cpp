@@ -11,13 +11,10 @@
 #include<string>
 using namespace std;
 
-bool CircuitGenerationComplete = false;
-
 int main(int argc, char *argv[])
 {
 	try
 	{
-		CircuitGenerationComplete = false; //Use this global flag to stop recurcsions later... Time saving vs better design.
 		string token[2];
 		//Step1: Get the filename
 		string input;

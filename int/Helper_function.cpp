@@ -369,6 +369,11 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 	else
 	{
 		pStack = FindEulerCircuit(G, pStack, pCircuit,tempStartVertex, noOfVertices);
+		if (pStack->CircuitGenerationComplete == true)
+		{
+
+			return pStack;
+		}
 		Stack *Stack1 = nullptr;
 		Stack *Circuit1 = nullptr;
 		Stack1 = pStack;
@@ -412,13 +417,17 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 			//Do a Euler pass on the new Startvertex. If any exist.
 			int endvertexStack1 = (temp->reverseNode.endVertex - 1);
 			Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
+			if (Stack1->CircuitGenerationComplete == true)
+			{
+
+				return Stack1;
+			}
 
 			Stack1 = temp;
 			if (Stack1->node == nullptr)
 			{
-				delete[] Stack1;
-				
-				break;
+				Stack1->CircuitGenerationComplete = true;
+				return Stack1;
 			}
 		}
 	}

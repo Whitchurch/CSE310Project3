@@ -2,6 +2,7 @@
 #include "reverseEdgeStack.h"
 Stack::Stack()
 {
+	this->CircuitGenerationComplete = false;
 	this->next = nullptr;
 	this->node = nullptr;
 }

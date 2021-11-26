@@ -3,6 +3,7 @@
 class Stack
 {
 public:
+	bool CircuitGenerationComplete;
 	EdgePairs reverseNode;
 	EdgePairs *node;
 	Stack *next;
