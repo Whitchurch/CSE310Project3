@@ -280,8 +280,11 @@ int main(int argc, char *argv[])
 
 			}
 
+			
+			//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
 			//Do a Euler pass on the new Startvertex. If any exist.
-			cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
+			Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, temp->reverseNode.endVertex, noOfVertices);
+
 			Stack1 = temp;
 			if (Stack1->node== nullptr)
 			{
