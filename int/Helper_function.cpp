@@ -272,7 +272,7 @@ void Helper_function::DeleteWeightedVertex(weightedEdges * W)
 
 }
 
-Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVertexIndex,int noOfVertices)
+Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex,int noOfVertices)
 {
 	Graph *vertexToRemoveNext = nullptr;
 	Graph *vertexToRemovePrev = nullptr;
@@ -367,7 +367,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVe
 	}
 	else
 	{
-		pStack = FindEulerCircuit(G, pStack, tempStartVertex, noOfVertices);
+		pStack = FindEulerCircuit(G, pStack, pCircuit,tempStartVertex, noOfVertices);
 	}
 	
 

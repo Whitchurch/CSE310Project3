@@ -18,5 +18,6 @@ public:
 	static void displayListValues(weightedEdges *W);
 	static void DeleteOddVertex(oddDegreeVertices *OddVertexList);
 	static void DeleteWeightedVertex(weightedEdges *W);
-	static Stack* FindEulerCircuit(Graph ** G, Stack *Stack, int startVertexIndex, int noOfVertices);
+	//static Stack* FindEulerCircuit(Graph ** G, Stack *Stack, Stack *pCircuit, int startVertexIndex, int noOfVertices);
+	static Stack* FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex, int noOfVertices);
 };

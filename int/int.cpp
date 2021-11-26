@@ -241,13 +241,46 @@ int main(int argc, char *argv[])
 		
 		//Find Euler circuit.
 		Stack *Stack1 = nullptr;
+		Stack *Circuit1 = nullptr;
 		int startVertexIndex = 0;
 
-		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, startVertexIndex,noOfVertices);
+		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
 
 		while (Stack1 != nullptr)
 		{
-			Stack *temp = Stack1->PopEdge(Stack1);
+			// Pop the reversed edge
+			Stack *temp = Stack1->PopEdge(Stack1); 
+
+			//Add the reversed edge into the Circuit
+			if (Circuit1 == nullptr)
+			{
+				Circuit1 = new Stack();
+				Circuit1->reverseNode = temp->reverseNode;
+			}
+			else
+			{
+				Stack *prev;
+				Stack *next;
+
+				prev = Circuit1;
+				next = Circuit1;
+				while (next != nullptr)
+				{
+					prev = next;
+					next = next->next;
+					if (next == nullptr)
+					{
+						next = new Stack();
+						next->reverseNode = temp->reverseNode;
+						prev->next = next;
+						break;
+					}
+					
+				}
+
+			}
+
+			//Do a Euler pass on the new Startvertex. If any exist.
 			cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
 			Stack1 = temp;
 			if (Stack1->node== nullptr)
