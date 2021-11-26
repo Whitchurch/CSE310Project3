@@ -243,7 +243,7 @@ int main(int argc, char *argv[])
 		Stack *Stack1 = nullptr;
 		int startVertexIndex = 0;
 
-		Helper_function::FindEulerCircuit(G, Stack1, startVertexIndex,noOfVertices);
+		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, startVertexIndex,noOfVertices);
 
 		//Graph *vertexToRemoveNext = nullptr;
 		//Graph *vertexToRemovePrev = nullptr;

@@ -272,7 +272,7 @@ void Helper_function::DeleteWeightedVertex(weightedEdges * W)
 
 }
 
-void Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVertexIndex,int noOfVertices)
+Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVertexIndex,int noOfVertices)
 {
 	Graph *vertexToRemoveNext = nullptr;
 	Graph *vertexToRemovePrev = nullptr;
@@ -282,6 +282,11 @@ void Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVert
 
 	nextStack = pStack;
 	prevStack = pStack;
+
+	if (*G == nullptr)
+	{
+		return pStack;
+	}
 
 	int endVertexIndex = G[startVertexIndex]->vertex;
 
@@ -299,14 +304,17 @@ void Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVert
 	{
 		while (nextStack != nullptr)
 		{
-			prevStack = nextStack;
+			prevStack = pStack;
 			nextStack = nextStack->next;
-			if (nextStack == nullptr)
+			if (nextStack == nullptr) //Insert head first to make it easier to reverse stuff later
 			{
 				nextStack = new Stack();
 				nextStack->node = newEdgeToIsert;
-				prevStack->next = nextStack;
-				nextStack = nextStack->next;
+				nextStack->next = prevStack;
+				pStack = nextStack;
+				//prevStack->next = nextStack;
+				//nextStack = nextStack->next;
+				break;
 			}
 		}
 	}
@@ -355,11 +363,11 @@ void Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, int startVert
 	Helper_function::DisplayGraph(G, noOfVertices);
 	if (G == nullptr)
 	{
-		return;
+		return pStack;
 	}
 	else
 	{
-		FindEulerCircuit(G, pStack, tempStartVertex, noOfVertices);
+		pStack = FindEulerCircuit(G, pStack, tempStartVertex, noOfVertices);
 	}
 	
 
