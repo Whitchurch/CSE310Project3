@@ -10,10 +10,14 @@
 #include "Helper_function.h"
 #include<string>
 using namespace std;
+
+bool CircuitGenerationComplete = false;
+
 int main(int argc, char *argv[])
 {
 	try
 	{
+		CircuitGenerationComplete = false; //Use this global flag to stop recurcsions later... Time saving vs better design.
 		string token[2];
 		//Step1: Get the filename
 		string input;
@@ -243,55 +247,57 @@ int main(int argc, char *argv[])
 		Stack *Stack1 = nullptr;
 		Stack *Circuit1 = nullptr;
 		int startVertexIndex = 0;
-
+		cout << "\n\n" << endl;
+		Helper_function::DisplayGraph(G, noOfVertices);
 		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
 
-		while (Stack1 != nullptr)
-		{
-			// Pop the reversed edge
-			Stack *temp = Stack1->PopEdge(Stack1); 
+		//while (Stack1 != nullptr)
+		//{
+		//	// Pop the reversed edge
+		//	Stack1 = Stack1->PopEdge(Stack1); 
+		//	Stack *temp = Stack1;
+		//	//Add the reversed edge into the Circuit
+		//	if (Circuit1 == nullptr)
+		//	{
+		//		Circuit1 = new Stack();
+		//		Circuit1->reverseNode = temp->reverseNode;
+		//	}
+		//	else
+		//	{
+		//		Stack *prev;
+		//		Stack *next;
 
-			//Add the reversed edge into the Circuit
-			if (Circuit1 == nullptr)
-			{
-				Circuit1 = new Stack();
-				Circuit1->reverseNode = temp->reverseNode;
-			}
-			else
-			{
-				Stack *prev;
-				Stack *next;
+		//		prev = Circuit1;
+		//		next = Circuit1;
+		//		while (next != nullptr)
+		//		{
+		//			prev = next;
+		//			next = next->next;
+		//			if (next == nullptr)
+		//			{
+		//				next = new Stack();
+		//				next->reverseNode = temp->reverseNode;
+		//				prev->next = next;
+		//				break;
+		//			}
+		//			
+		//		}
 
-				prev = Circuit1;
-				next = Circuit1;
-				while (next != nullptr)
-				{
-					prev = next;
-					next = next->next;
-					if (next == nullptr)
-					{
-						next = new Stack();
-						next->reverseNode = temp->reverseNode;
-						prev->next = next;
-						break;
-					}
-					
-				}
+		//	}
 
-			}
+		//	
+		//	//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
+		//	//Do a Euler pass on the new Startvertex. If any exist.
+		//	int endvertexStack1 = (temp->reverseNode.endVertex - 1);
+		//	Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
 
-			
-			//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
-			//Do a Euler pass on the new Startvertex. If any exist.
-			Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, temp->reverseNode.endVertex, noOfVertices);
-
-			Stack1 = temp;
-			if (Stack1->node== nullptr)
-			{
-				delete[] Stack1;
-				break;
-			}
-		}
+		//	Stack1 = temp;
+		//	if (Stack1->node== nullptr)
+		//	{
+		//		delete[] Stack1;
+		//		break;
+		//	}
+		//}
 		
 
 		//Graph *vertexToRemoveNext = nullptr;

@@ -283,7 +283,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 	nextStack = pStack;
 	prevStack = pStack;
 
-	if (*G == nullptr)
+	if (G[startVertexIndex] == nullptr)
 	{
 		return pStack;
 	}
@@ -360,6 +360,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 		vertexToRemovePrev = vertexToRemoveNext;
 		vertexToRemoveNext = vertexToRemoveNext->next;
 	}
+	cout << "\n\n" << endl;
 	Helper_function::DisplayGraph(G, noOfVertices);
 	if (G == nullptr)
 	{
@@ -368,6 +369,58 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 	else
 	{
 		pStack = FindEulerCircuit(G, pStack, pCircuit,tempStartVertex, noOfVertices);
+		Stack *Stack1 = nullptr;
+		Stack *Circuit1 = nullptr;
+		Stack1 = pStack;
+		Circuit1 = pCircuit;
+		while (Stack1 != nullptr)
+		{
+			// Pop the reversed edge
+			Stack1 = Stack1->PopEdge(Stack1);
+			Stack *temp = Stack1;
+			//Add the reversed edge into the Circuit
+			if (Circuit1 == nullptr)
+			{
+				Circuit1 = new Stack();
+				Circuit1->reverseNode = temp->reverseNode;
+			}
+			else
+			{
+				Stack *prev;
+				Stack *next;
+
+				prev = Circuit1;
+				next = Circuit1;
+				while (next != nullptr)
+				{
+					prev = next;
+					next = next->next;
+					if (next == nullptr)
+					{
+						next = new Stack();
+						next->reverseNode = temp->reverseNode;
+						prev->next = next;
+						break;
+					}
+
+				}
+
+			}
+
+
+			//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
+			//Do a Euler pass on the new Startvertex. If any exist.
+			int endvertexStack1 = (temp->reverseNode.endVertex - 1);
+			Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
+
+			Stack1 = temp;
+			if (Stack1->node == nullptr)
+			{
+				delete[] Stack1;
+				
+				break;
+			}
+		}
 	}
 	
 
