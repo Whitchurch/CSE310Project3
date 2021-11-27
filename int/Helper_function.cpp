@@ -548,14 +548,38 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 void Helper_function::DisplayFloydWarshallMatix(int ** M, int noOfVertices)
 {
 	cout << "Results of Floyd-Warshall on O:" << endl;
+	
+	//Print the table:
+	cout << "     " << "| ";
 	for (int i = 0; i < noOfVertices; i++)
 	{
+		cout << "   " << i;
+	}
+	cout << endl;
+	cout << "--- -" << "+-";
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		cout << " ---";
+	}
+	cout << endl;
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		cout << "  " << i<<"  "<<"|"<<" ";
 		for (int j = 0; j < noOfVertices; j++)
 		{
-			cout << M[i][j] << "\t";
+			cout << "   "<<j;
 		}
-		cout << "\n";
+		cout << endl;
 	}
+
+	//for (int i = 0; i < noOfVertices; i++)
+	//{
+	//	for (int j = 0; j < noOfVertices; j++)
+	//	{
+	//		cout << M[i][j] << "\t";
+	//	}
+	//	cout << "\n";
+	//}
 }
 
 		
