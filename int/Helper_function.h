@@ -16,6 +16,7 @@ public:
 	static void DisplayAdjacenyMatix(int **M, int noOfVertices);
 	static int** FloydWarshalAlgorithm(int **M, int noOfVertices);
 	static void displayListValues(weightedEdges *W);
+	static void displayGreedyListValues(weightedEdges *W);
 	static void DeleteOddVertex(oddDegreeVertices *OddVertexList);
 	static void DeleteWeightedVertex(weightedEdges *W);
 	//static Stack* FindEulerCircuit(Graph ** G, Stack *Stack, Stack *pCircuit, int startVertexIndex, int noOfVertices);

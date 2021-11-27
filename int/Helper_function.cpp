@@ -62,13 +62,25 @@ void Helper_function::DisplayOddVertex(oddDegreeVertices * head)
 	try
 	{
 		//Display the items in the oddVertex List:
-		oddDegreeVertices *next = head;
-		while (next != nullptr)
+
+		oddDegreeVertices *greedyList = head;
+		//Code to view the greedy list
+		cout << "The odd-degree vertices in G: O = { ";
+		while (greedyList != nullptr)
 		{
-			cout << next->vertex;
-			next = next->next;
+			//cout << headWeightedList->weight;
+			cout << greedyList->vertex << " ";
+			greedyList = greedyList->next;
 		}
-		cout << "\n";
+		cout << "}";
+
+		//oddDegreeVertices *next = head;
+		//while (next != nullptr)
+		//{
+		//	cout << next->vertex;
+		//	next = next->next;
+		//}
+		//cout << "\n";
 	}
 	catch (...)
 	{
@@ -234,6 +246,29 @@ void Helper_function::displayListValues(weightedEdges * W)
 	}
 
 
+}
+
+void Helper_function::displayGreedyListValues(weightedEdges * W)
+{
+	try
+	{
+		weightedEdges *greedyList = W;
+		//Code to view the greedy list
+		cout << "The odd-degree vertices in G: O = { ";
+		while (greedyList != nullptr)
+		{
+			//cout << headWeightedList->weight;
+			cout << greedyList->startVertex<<" ";
+			cout << greedyList->endVertex <<" ";
+
+			greedyList = greedyList->next;
+		}
+		cout << "}";
+	}
+	catch (...)
+	{
+		cout << "Exception: Helper_function::displayListValues(weightedEdges * W)" << endl;
+	}
 }
 
 void Helper_function::DeleteOddVertex(oddDegreeVertices * OddVertexList)

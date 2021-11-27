@@ -72,6 +72,8 @@ int main(int argc, char *argv[])
 		//Create the AdjacenyList
 		head = oddDegreeVertices::createOddDegreeVerticesList(G, head, noOfVertices);
 
+		//Output 1: Display the odd vertices:
+		Helper_function::DisplayOddVertex(head);
 		
 		//Create Adjaceny Matrix to be used by the Floyd-Warshall Algorithm
 		int **M = nullptr;
@@ -84,13 +86,13 @@ int main(int argc, char *argv[])
 		M = Helper_function::PopulateAdjacenyMatrix(M, noOfVertices,G);
 
 		//Display the Adjacency Matrix BEFORE FLOYD-WARSHALL ALGORITHM:
-		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
+//		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 		//Calculate the Pair-Wise shortest path using Floyd-Warshall Algorithm
 		M = Helper_function::FloydWarshalAlgorithm(M, noOfVertices);
 
 		//Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
-		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
+//		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 
 		int **M_reduced = nullptr;
@@ -119,7 +121,7 @@ int main(int argc, char *argv[])
 		}
 		
 		//Display the reduced subset of the Floyd Warshal Matrix
-		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
+//		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
 
 		weightedEdges *headWeightedList = nullptr;
 
@@ -145,7 +147,7 @@ int main(int argc, char *argv[])
 
 
 		//View the sorted Edge List
-		Helper_function::displayListValues(headWeightedList);
+//		Helper_function::displayListValues(headWeightedList);
 		
 		//Part 2 of Greedy Algorithm:
 		//Now  Use Greedy method to add in the perfect matching edges, from the sorted list of edges:
@@ -214,9 +216,9 @@ int main(int argc, char *argv[])
 		nextGreedy = greedyList;
 		while(nextGreedy!=nullptr)
 		{
-			cout << nextGreedy->weight << endl;
-			cout << nextGreedy->startVertex << endl;
-			cout << nextGreedy->endVertex << endl;
+			//cout << nextGreedy->weight << endl;
+			//cout << nextGreedy->startVertex << endl;
+			//cout << nextGreedy->endVertex << endl;
 
 			if (nextGreedy->weight > 1)
 			{
@@ -287,7 +289,7 @@ int main(int argc, char *argv[])
 		}
 
 		//View the greedy selected edge list
-		Helper_function::displayListValues(greedyList);
+		Helper_function::displayGreedyListValues(greedyList);
 
 		//Convert the weighted edge to edgepair type. before feeding into create graph function.
 		int greedyCount = 0;
@@ -322,8 +324,8 @@ int main(int argc, char *argv[])
 		Stack *Stack1 = nullptr;
 		Stack *Circuit1 = nullptr;
 		int startVertexIndex = 0;
-		cout << "\n\n" << endl;
-		Helper_function::DisplayGraph(G, noOfVertices);
+		//cout << "\n\n" << endl;
+		//Helper_function::DisplayGraph(G, noOfVertices);
 		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
 
 
