@@ -327,6 +327,19 @@ int main(int argc, char *argv[])
 		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
 
 
+		//Display the circuit:
+		Stack *navigatePointer = nullptr;
+		navigatePointer = Stack1;
+		while (navigatePointer != nullptr)
+		{
+			cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
+			navigatePointer = navigatePointer->next;
+		}
+
+
+
+
+
 		//--- Section to delete all data structures and free up the memory--------------------------------///
 		//Delete the Adjaceny Matrix used by Floyd-Warshall Algorithm
 		Helper_function::DeleteAdjacenyMatrix(M, noOfVertices);

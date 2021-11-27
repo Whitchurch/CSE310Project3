@@ -426,6 +426,8 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 			Stack1 = temp;
 			if (Stack1->node == nullptr)
 			{
+				
+				Stack1 = Circuit1;
 				Stack1->CircuitGenerationComplete = true;
 				return Stack1;
 			}
