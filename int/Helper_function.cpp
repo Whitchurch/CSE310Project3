@@ -557,7 +557,30 @@ void Helper_function::DisplayFloydWarshallMatix(int ** M, int noOfVertices,oddDe
 	cout << "     " << "| ";
 	while (next != nullptr)
 	{
-		cout << "   " << next->vertex;
+		int digitCount = 0;
+		int numberToFigureout = next->vertex;
+		do {
+			numberToFigureout /= 10;
+			++digitCount;
+		} while (numberToFigureout != 0);
+
+		if (digitCount == 1)
+		{
+			cout << "   " << next->vertex;
+		}
+		else if (digitCount == 2)
+		{
+			cout << "  " << next->vertex;
+		}
+		else if (digitCount == 3)
+		{
+			cout << " " << next->vertex;
+		}
+		else if (digitCount > 3)
+		{
+			cout << "" << next->vertex << "  " << "|" << " ";
+		}
+		
 		xAxisCount++;
 		next = next->next;
 	}
@@ -577,7 +600,30 @@ void Helper_function::DisplayFloydWarshallMatix(int ** M, int noOfVertices,oddDe
 	
 	while (next != nullptr)
 	{
-		cout << "  " << next->vertex << "  " << "|" << " ";
+		int digitCount = 0;
+		int numberToFigureout = next->vertex;
+		do {
+			numberToFigureout/= 10;
+			++digitCount;
+		} while (numberToFigureout != 0);
+
+		if (digitCount == 1)
+		{
+			cout << "  " << next->vertex << "  " << "|" << " ";
+		}
+		else if (digitCount == 2)
+		{
+			cout << " " << next->vertex << "  " << "|" << " ";
+		}
+		else if (digitCount == 3)
+		{
+			cout << "" << next->vertex << "  " << "|" << " ";
+		}
+		else if (digitCount > 3)
+		{
+			cout << "" << next->vertex << "  " << "|" << " ";
+		}
+		
 		next2ndLevel = head;
 			while (next2ndLevel != nullptr)
 			{

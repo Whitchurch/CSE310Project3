@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 		//Display the reduced subset of the Floyd Warshal Matrix
 //		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
 
-				//Output 2:		Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
+//Output 2:		Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
 		Helper_function::DisplayFloydWarshallMatix(M_reduced, noOfVertices, head);
 
 		weightedEdges *headWeightedList = nullptr;
