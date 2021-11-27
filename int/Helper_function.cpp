@@ -72,7 +72,7 @@ void Helper_function::DisplayOddVertex(oddDegreeVertices * head)
 			cout << greedyList->vertex << " ";
 			greedyList = greedyList->next;
 		}
-		cout << "}";
+		cout << "}"<<endl;
 
 		//oddDegreeVertices *next = head;
 		//while (next != nullptr)
@@ -254,12 +254,12 @@ void Helper_function::displayGreedyListValues(weightedEdges * W)
 	{
 		weightedEdges *greedyList = W;
 		//Code to view the greedy list
-		cout << "The odd-degree vertices in G: O = { ";
+		cout << "The greedy perfect matching in O: M = {";
 		while (greedyList != nullptr)
 		{
 			//cout << headWeightedList->weight;
-			cout << greedyList->startVertex<<" ";
-			cout << greedyList->endVertex <<" ";
+			cout <<" ("<<greedyList->startVertex<<",";
+			cout << greedyList->endVertex <<") ";
 
 			greedyList = greedyList->next;
 		}

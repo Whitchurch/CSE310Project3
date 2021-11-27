@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 		//Create the AdjacenyList
 		head = oddDegreeVertices::createOddDegreeVerticesList(G, head, noOfVertices);
 
-		//Output 1: Display the odd vertices:
+//Output 1:			Display the odd vertices:
 		Helper_function::DisplayOddVertex(head);
 		
 		//Create Adjaceny Matrix to be used by the Floyd-Warshall Algorithm
@@ -288,8 +288,11 @@ int main(int argc, char *argv[])
 			nextGreedy = nextGreedy->next;
 		}
 
-		//View the greedy selected edge list
+
+// Output 3:					View the greedy selected edge list
 		Helper_function::displayGreedyListValues(greedyList);
+
+
 
 		//Convert the weighted edge to edgepair type. before feeding into create graph function.
 		int greedyCount = 0;
