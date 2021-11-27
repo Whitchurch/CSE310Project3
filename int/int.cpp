@@ -209,7 +209,65 @@ int main(int argc, char *argv[])
 		}
 
 		//Put in the logic to get the real edges, that represent the virual edge:
+		weightedEdges *nextGreedy;
+		weightedEdges *prevGreedy;
+		nextGreedy = greedyList;
+		while(nextGreedy!=nullptr)
+		{
+			cout << nextGreedy->weight << endl;
+			cout << nextGreedy->startVertex << endl;
+			cout << nextGreedy->endVertex << endl;
 
+			if (nextGreedy->weight > 1)
+			{
+				int indexVertex = nextGreedy->endVertex;
+				for (int i = 0; i < nextGreedy->weight; i++)
+				{
+					for (int j = 0; j < noOfVertices; j++)
+					{
+						
+						if (M[(indexVertex) - 1][j] == 1)
+						{
+							if (nextGreedy->expansionSubPaths == nullptr)
+							{
+								weightedEdges *itemToInsert = new weightedEdges();
+								itemToInsert->startVertex = j + 1;
+								itemToInsert->endVertex = nextGreedy->endVertex;
+								nextGreedy->expansionSubPaths = itemToInsert;
+								indexVertex = j+1;
+								break;
+							}
+							else
+							{
+								while (nextGreedy->expansionSubPaths != nullptr)
+								{
+									prevGreedy = nextGreedy;
+									nextGreedy->expansionSubPaths = nextGreedy->expansionSubPaths->next;
+									if (nextGreedy->expansionSubPaths == nullptr)
+									{
+										weightedEdges *itemToInsert = new weightedEdges();
+										itemToInsert->startVertex = j + 1;
+										itemToInsert->endVertex = indexVertex;
+										nextGreedy->expansionSubPaths = itemToInsert;
+										nextGreedy->expansionSubPaths->next = prevGreedy;
+										indexVertex = j + 1;
+										j = 0;
+										break;
+									}
+
+									//nextGreedy->expansionSubPaths = nextGreedy->expansionSubPaths->next;
+								}
+							}
+
+						}
+						
+					}
+					
+				}
+			}
+
+			nextGreedy = nextGreedy->next;
+		}
 
 		//View the greedy selected edge list
 		Helper_function::displayListValues(greedyList);

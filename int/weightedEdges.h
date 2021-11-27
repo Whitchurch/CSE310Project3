@@ -6,6 +6,7 @@ public:
 	int startVertex;
 	int endVertex;
 	weightedEdges *next;
+	weightedEdges *expansionSubPaths;
 	
 	weightedEdges();
 

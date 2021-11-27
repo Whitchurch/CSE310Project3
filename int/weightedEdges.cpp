@@ -8,6 +8,7 @@ weightedEdges::weightedEdges()
 	this->startVertex = 0;
 	this->weight = 0;
 	this->next = nullptr;
+	this->expansionSubPaths = nullptr;
 }
 
 weightedEdges * weightedEdges::insertIteminGraph(weightedEdges* headNode,weightedEdges* G)
