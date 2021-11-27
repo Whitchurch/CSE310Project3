@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 
 		//Put in the logic to get the real edges, that represent the virual edge:
 		weightedEdges *nextGreedy;
-		weightedEdges *prevGreedy;
+		weightedEdges *prevGreedy = nullptr;
 		nextGreedy = greedyList;
 		while(nextGreedy!=nullptr)
 		{
@@ -235,28 +235,39 @@ int main(int argc, char *argv[])
 								itemToInsert->endVertex = nextGreedy->endVertex;
 								nextGreedy->expansionSubPaths = itemToInsert;
 								indexVertex = j+1;
+								j = 0;
+								i++;
 								break;
 							}
 							else
 							{
+								//prevGreedy = nextGreedy;
+								//nextGreedyItem = nextGreedy;
+								prevGreedy = nextGreedy->expansionSubPaths;
 								while (nextGreedy->expansionSubPaths != nullptr)
 								{
-									prevGreedy = nextGreedy;
+									
 									nextGreedy->expansionSubPaths = nextGreedy->expansionSubPaths->next;
 									if (nextGreedy->expansionSubPaths == nullptr)
 									{
+										
 										weightedEdges *itemToInsert = new weightedEdges();
 										itemToInsert->startVertex = j + 1;
 										itemToInsert->endVertex = indexVertex;
 										nextGreedy->expansionSubPaths = itemToInsert;
-										nextGreedy->expansionSubPaths->next = prevGreedy;
 										indexVertex = j + 1;
 										j = 0;
+										i++;
+										
+										nextGreedy->expansionSubPaths->next = prevGreedy;
+										//nextGreedy = prevGreedy;
+										//return headNode;
 										break;
 									}
-
-									//nextGreedy->expansionSubPaths = nextGreedy->expansionSubPaths->next;
+									
 								}
+
+
 							}
 
 						}
