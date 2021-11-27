@@ -332,7 +332,11 @@ int main(int argc, char *argv[])
 		navigatePointer = Stack1;
 		while (navigatePointer != nullptr)
 		{
-			cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
+			//Insert logic to expand out the virtual edges:
+			
+
+			//cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
+			Helper_function::expandVirtualNode(navigatePointer, greedyList);
 			navigatePointer = navigatePointer->next;
 		}
 

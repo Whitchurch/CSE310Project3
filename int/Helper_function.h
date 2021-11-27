@@ -20,4 +20,5 @@ public:
 	static void DeleteWeightedVertex(weightedEdges *W);
 	//static Stack* FindEulerCircuit(Graph ** G, Stack *Stack, Stack *pCircuit, int startVertexIndex, int noOfVertices);
 	static Stack* FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex, int noOfVertices);
+	static void expandVirtualNode(Stack *pCircuit, weightedEdges *greedyList);
 };

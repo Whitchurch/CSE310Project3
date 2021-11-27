@@ -437,4 +437,44 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 
 }
 
+void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedyList)
+{
+	weightedEdges *traverser = nullptr;
+	traverser = greedyList;
+	bool canExpand = false;
+	while (traverser != nullptr)
+	{
+		if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex)
+		{
+			if (traverser->weight > 1)
+			{
+				canExpand = true;
+			}
+			else
+			{
+				canExpand = false;
+			}
+			
+
+		}
+
+		
+		if (canExpand == true)
+		{
+			while (traverser->expansionSubPaths != nullptr)
+			{
+				cout << traverser->expansionSubPaths->startVertex << traverser->expansionSubPaths->endVertex << endl;
+				traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+			}
+		}
+
+		traverser = traverser->next;
+	}
+
+	if (canExpand == false)
+	{
+		cout << pCircuit->reverseNode.startVertex << pCircuit->reverseNode.endVertex << endl;
+	}
+}
+
 		
