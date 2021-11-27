@@ -91,10 +91,6 @@ int main(int argc, char *argv[])
 		//Calculate the Pair-Wise shortest path using Floyd-Warshall Algorithm
 		M = Helper_function::FloydWarshalAlgorithm(M, noOfVertices);
 
-		//Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
-//		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
-
-
 		int **M_reduced = nullptr;
 		M_reduced = Helper_function::CreateAdjacenyMatrix(M_reduced, noOfVertices);
 
@@ -105,6 +101,8 @@ int main(int argc, char *argv[])
 				M_reduced[i][j] = 0;
 			}
 		}
+
+
 
 		oddDegreeVertices *startVertex = head;
 		oddDegreeVertices *endVerted = head;
@@ -122,6 +120,9 @@ int main(int argc, char *argv[])
 		
 		//Display the reduced subset of the Floyd Warshal Matrix
 //		Helper_function::DisplayAdjacenyMatix(M_reduced, noOfVertices);
+
+				//Output 2:		Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
+		Helper_function::DisplayFloydWarshallMatix(M_reduced, noOfVertices);
 
 		weightedEdges *headWeightedList = nullptr;
 

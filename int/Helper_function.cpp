@@ -73,7 +73,7 @@ void Helper_function::DisplayOddVertex(oddDegreeVertices * head)
 			greedyList = greedyList->next;
 		}
 		cout << "}"<<endl;
-
+		cout << "\n";
 		//oddDegreeVertices *next = head;
 		//while (next != nullptr)
 		//{
@@ -543,6 +543,19 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 		cout << "Exception: Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedyList)" << endl;
 	}
 
+}
+
+void Helper_function::DisplayFloydWarshallMatix(int ** M, int noOfVertices)
+{
+	cout << "Results of Floyd-Warshall on O:" << endl;
+	for (int i = 0; i < noOfVertices; i++)
+	{
+		for (int j = 0; j < noOfVertices; j++)
+		{
+			cout << M[i][j] << "\t";
+		}
+		cout << "\n";
+	}
 }
 
 		
