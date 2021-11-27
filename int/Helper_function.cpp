@@ -259,11 +259,11 @@ void Helper_function::displayGreedyListValues(weightedEdges * W)
 		{
 			//cout << headWeightedList->weight;
 			cout <<" ("<<greedyList->startVertex<<",";
-			cout << greedyList->endVertex <<") ";
+			cout << greedyList->endVertex <<")";
 
 			greedyList = greedyList->next;
 		}
-		cout << "}"<<endl;
+		cout << " }"<<endl;
 	}
 	catch (...)
 	{
@@ -506,7 +506,7 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 		bool canExpand = false;
 		while (traverser != nullptr)
 		{
-			if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex)
+			if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex|| pCircuit->reverseNode.startVertex == traverser->endVertex && pCircuit->reverseNode.endVertex == traverser->startVertex)
 			{
 				if (traverser->weight > 1)
 				{
@@ -547,11 +547,17 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 
 void Helper_function::DisplayFloydWarshallMatix(int ** M, int noOfVertices,oddDegreeVertices *head)
 {
+
 	oddDegreeVertices *next = nullptr;
 	oddDegreeVertices *next2ndLevel = nullptr;
 	next = head;
 	int xAxisCount = 0;
 	cout << "Results of Floyd-Warshall on O:" << endl;
+
+	if (head == nullptr)
+	{
+		return;
+	}
 	
 	//Print the table:
 	cout << "     " << "| ";

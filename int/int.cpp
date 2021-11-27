@@ -123,6 +123,7 @@ int main(int argc, char *argv[])
 
 //Output 2:		Display the Adjacency Matrix AFTER FLOYD-WARSHALL ALGORITHM:
 		Helper_function::DisplayFloydWarshallMatix(M_reduced, noOfVertices, head);
+		cout << "\n";
 
 		weightedEdges *headWeightedList = nullptr;
 
@@ -292,7 +293,7 @@ int main(int argc, char *argv[])
 
 // Output 3:					View the greedy selected edge list
 		Helper_function::displayGreedyListValues(greedyList);
-
+		cout << "\n";
 
 
 		//Convert the weighted edge to edgepair type. before feeding into create graph function.
@@ -359,10 +360,10 @@ int main(int argc, char *argv[])
 
 
 		//Display Graph
-		Helper_function::DisplayGraph(G, noOfVertices);
+		//Helper_function::DisplayGraph(G, noOfVertices);
 
 		//Display odd Graph
-		Helper_function::DisplayOddVertex(head);
+		//Helper_function::DisplayOddVertex(head);
 
 		//Delete odd VertexList
 		Helper_function::DeleteOddVertex(head);
