@@ -221,12 +221,16 @@ int main(int argc, char *argv[])
 			if (nextGreedy->weight > 1)
 			{
 				int indexVertex = nextGreedy->endVertex;
-				for (int i = 0; i < nextGreedy->weight; i++)
+				int ivertexlevel = 0;
+
+				while (ivertexlevel < nextGreedy->weight)
 				{
+
 					for (int j = 0; j < noOfVertices; j++)
 					{
-						
-						if (M[(indexVertex) - 1][j] == 1)
+						if (ivertexlevel == nextGreedy->weight)
+							break;
+						if (M[(indexVertex)-1][j] == 1)
 						{
 							if (nextGreedy->expansionSubPaths == nullptr)
 							{
@@ -234,9 +238,9 @@ int main(int argc, char *argv[])
 								itemToInsert->startVertex = j + 1;
 								itemToInsert->endVertex = nextGreedy->endVertex;
 								nextGreedy->expansionSubPaths = itemToInsert;
-								indexVertex = j+1;
+								indexVertex = j + 1;
 								j = 0;
-								i++;
+								ivertexlevel++;
 								break;
 							}
 							else
@@ -246,35 +250,37 @@ int main(int argc, char *argv[])
 								prevGreedy = nextGreedy->expansionSubPaths;
 								while (nextGreedy->expansionSubPaths != nullptr)
 								{
-									
+
 									nextGreedy->expansionSubPaths = nextGreedy->expansionSubPaths->next;
 									if (nextGreedy->expansionSubPaths == nullptr)
 									{
-										
+
 										weightedEdges *itemToInsert = new weightedEdges();
 										itemToInsert->startVertex = j + 1;
 										itemToInsert->endVertex = indexVertex;
 										nextGreedy->expansionSubPaths = itemToInsert;
 										indexVertex = j + 1;
 										j = 0;
-										i++;
-										
+										ivertexlevel++;
+
 										nextGreedy->expansionSubPaths->next = prevGreedy;
 										//nextGreedy = prevGreedy;
 										//return headNode;
 										break;
 									}
-									
+
 								}
 
 
 							}
 
 						}
-						
+
 					}
-					
 				}
+					
+					
+				
 			}
 
 			nextGreedy = nextGreedy->next;
