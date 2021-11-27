@@ -335,6 +335,7 @@ int main(int argc, char *argv[])
 		//Display the circuit:
 		Stack *navigatePointer = nullptr;
 		navigatePointer = Stack1;
+		cout << "The Euler circuit in G with virtual edges is:" << endl;
 		while (navigatePointer != nullptr)
 		{
 			//Insert logic to expand out the virtual edges:
