@@ -173,6 +173,7 @@ int main(int argc, char *argv[])
 				Gitem->weight = next->weight;
 				Gitem->startVertex = next->startVertex;
 				Gitem->endVertex = next->endVertex;
+				Gitem->isVirtual = true;
 				Gitem->next = nullptr;
 
 				greedyList = Gitem;
@@ -204,6 +205,7 @@ int main(int argc, char *argv[])
 					Gitem->weight = next->weight;
 					Gitem->startVertex = next->startVertex;
 					Gitem->endVertex = next->endVertex;
+					Gitem->isVirtual = true;
 					Gitem->next = nullptr;
 
 					greedyPrev->next = Gitem;
@@ -379,6 +381,7 @@ int main(int argc, char *argv[])
 		{
 			EdgesToInsert[i].startVertex = nextToInsert->startVertex;
 			EdgesToInsert[i].endVertex = nextToInsert->endVertex;
+			EdgesToInsert[i].isVirtual = nextToInsert->isVirtual;
 			nextToInsert = nextToInsert->next;
 		}
 
@@ -393,7 +396,7 @@ int main(int argc, char *argv[])
 		int startVertexIndex = 0;
 		//cout << "\n\n" << endl;
 		//Helper_function::DisplayGraph(G, noOfVertices);
-		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices);
+		Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1,startVertexIndex,noOfVertices,greedyList);
 
 
 		//Display the circuit:

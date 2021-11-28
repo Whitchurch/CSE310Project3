@@ -8,6 +8,7 @@ weightedEdges::weightedEdges()
 	this->startVertex = 0;
 	this->weight = 0;
 	this->next = nullptr;
+	this->isVirtual = false;
 	this->expansionSubPaths = nullptr;
 }
 

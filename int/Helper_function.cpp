@@ -325,7 +325,7 @@ void Helper_function::DeleteWeightedVertex(weightedEdges * W)
 
 int turns = 0;
 int turns_level1 = 1;
-Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex,int noOfVertices)
+Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex,int noOfVertices, weightedEdges * EdgesToInsert)
 {
 
 	try
@@ -351,6 +351,15 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 		newEdgeToIsert->startVertex = startVertexIndex + 1;
 		newEdgeToIsert->endVertex = endVertexIndex;
 		
+		weightedEdges *traverseEdgePairs = EdgesToInsert;
+		while (traverseEdgePairs != nullptr)
+		{if(newEdgeToIsert->startVertex == traverseEdgePairs->startVertex && newEdgeToIsert->endVertex == traverseEdgePairs->endVertex|| newEdgeToIsert->startVertex == traverseEdgePairs->endVertex && newEdgeToIsert->endVertex == traverseEdgePairs->startVertex)
+		{
+			newEdgeToIsert->isVirtual = traverseEdgePairs->isVirtual;
+		}
+			traverseEdgePairs = traverseEdgePairs->next;
+		}
+
 		if (nextStack == nullptr)
 		{
 			nextStack = new Stack();
@@ -442,7 +451,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 			//{
 			//	cout << "Do we need further tracking???" << endl;
 			//}
-			pStack = FindEulerCircuit(G, pStack, pCircuit, tempStartVertex, noOfVertices);
+			pStack = FindEulerCircuit(G, pStack, pCircuit, tempStartVertex, noOfVertices, EdgesToInsert);
 			//cout << "I did not crash point 3:" << endl;
 			//Stack *temp1 = pCircuit;
 			//while (temp1 != nullptr)
@@ -499,7 +508,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 				//Do a Euler pass on the new Startvertex. If any exist.
 				int endvertexStack1 = (temp->reverseNode.endVertex - 1);
 				//cout << "I Crash after this point 1:" << endl;
-				Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
+				Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices, EdgesToInsert);
 				//cout << "I did not crash point 2:" << endl;
 				if (Stack1->CircuitGenerationComplete == true)
 				{
@@ -536,18 +545,21 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 		bool canExpand = false;
 		while (traverser != nullptr)
 		{
-			if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex|| pCircuit->reverseNode.startVertex == traverser->endVertex && pCircuit->reverseNode.endVertex == traverser->startVertex)
+			if (pCircuit->reverseNode.isVirtual == true)
 			{
-				if (traverser->weight > 1)
+				if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex|| pCircuit->reverseNode.startVertex == traverser->endVertex && pCircuit->reverseNode.endVertex == traverser->startVertex)
 				{
-					canExpand = true;
-				}
-				else
-				{
-					canExpand = false;
-				}
+					if (traverser->weight > 1)
+					{
+						canExpand = true;
+					}
+					else
+					{
+						canExpand = false;
+					}
 
 
+				}
 			}
 
 
@@ -557,7 +569,9 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 				{
 					cout <<"\t"<<"("<<traverser->expansionSubPaths->startVertex<<"," << traverser->expansionSubPaths->endVertex<<")"<< endl;
 					traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+					
 				}
+				break;
 			}
 
 			traverser = traverser->next;

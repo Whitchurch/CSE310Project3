@@ -12,6 +12,7 @@ Stack* Stack::PopEdge(Stack *pStack)
 	EdgePairs edgeToReturn;
 	edgeToReturn.startVertex = pStack->node->endVertex;
 	edgeToReturn.endVertex = pStack->node->startVertex;
+	edgeToReturn.isVirtual = pStack->node->isVirtual;
 
 	Stack *prev;
 	Stack *next;

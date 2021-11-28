@@ -5,6 +5,7 @@ public:
 	int weight;
 	int startVertex;
 	int endVertex;
+	bool isVirtual;
 	weightedEdges *next;
 	weightedEdges *expansionSubPaths;
 	
