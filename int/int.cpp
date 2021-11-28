@@ -342,7 +342,7 @@ int main(int argc, char *argv[])
 		{
 			//Insert logic to expand out the virtual edges:
 			
-
+			//Push in a change
 			//cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
 			Helper_function::expandVirtualNode(navigatePointer, greedyList);
 			navigatePointer = navigatePointer->next;
