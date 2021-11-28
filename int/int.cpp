@@ -86,10 +86,12 @@ int main(int argc, char *argv[])
 		M = Helper_function::PopulateAdjacenyMatrix(M, noOfVertices,G);
 
 		//Display the Adjacency Matrix BEFORE FLOYD-WARSHALL ALGORITHM:
-//		Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
+		//Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 		//Calculate the Pair-Wise shortest path using Floyd-Warshall Algorithm
 		M = Helper_function::FloydWarshalAlgorithm(M, noOfVertices);
+
+		//Helper_function::DisplayAdjacenyMatix(M, noOfVertices);
 
 		int **M_reduced = nullptr;
 		M_reduced = Helper_function::CreateAdjacenyMatrix(M_reduced, noOfVertices);
@@ -245,6 +247,19 @@ int main(int argc, char *argv[])
 								indexVertex = j + 1;
 								j = 0;
 								ivertexlevel++;
+
+								if (ivertexlevel == nextGreedy->weight)
+								{
+									if (nextGreedy->expansionSubPaths->startVertex != nextGreedy->startVertex)
+									{
+										nextGreedy->expansionSubPaths->startVertex = nextGreedy->startVertex;
+									}
+									else
+									{
+										//do nothing
+									}
+								}
+
 								break;
 							}
 							else
@@ -267,7 +282,54 @@ int main(int argc, char *argv[])
 										j = 0;
 										ivertexlevel++;
 
-										nextGreedy->expansionSubPaths->next = prevGreedy;
+										if (ivertexlevel == nextGreedy->weight)
+										{
+											if (nextGreedy->expansionSubPaths->startVertex != nextGreedy->startVertex)
+											{
+												nextGreedy->expansionSubPaths->startVertex = nextGreedy->startVertex;
+											}
+											else
+											{
+												//do nothing
+											}
+										}
+
+										if (prevGreedy->startVertex > nextGreedy->expansionSubPaths->startVertex)
+										{
+											nextGreedy->expansionSubPaths->next = prevGreedy;
+										}
+										else
+										{
+											int temp1 = 0;
+											int temp2 = 0;
+
+											temp1 = prevGreedy->startVertex;
+											temp2 = prevGreedy->endVertex;
+											//Swap internally
+											prevGreedy->startVertex = temp2;
+											prevGreedy->endVertex = temp1;
+											
+											temp1 = nextGreedy->expansionSubPaths->startVertex;
+											temp2 = nextGreedy->expansionSubPaths->endVertex;
+
+											//Swap internally
+											nextGreedy->expansionSubPaths->startVertex = temp2;
+											nextGreedy->expansionSubPaths->endVertex = temp1;
+											
+											//Store Expansion subpath values in temp;
+											temp1 = nextGreedy->expansionSubPaths->startVertex;
+											temp2 = nextGreedy->expansionSubPaths->endVertex;
+
+											nextGreedy->expansionSubPaths->startVertex = prevGreedy->startVertex;
+											nextGreedy->expansionSubPaths->endVertex = prevGreedy->endVertex;
+
+											prevGreedy->startVertex = temp1;
+											prevGreedy->endVertex = temp2;
+
+											nextGreedy->expansionSubPaths->next = prevGreedy;
+											
+										}
+										
 										//nextGreedy = prevGreedy;
 										//return headNode;
 										break;
