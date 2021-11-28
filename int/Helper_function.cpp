@@ -323,11 +323,14 @@ void Helper_function::DeleteWeightedVertex(weightedEdges * W)
 
 }
 
+int turns = 0;
+int turns_level1 = 1;
 Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCircuit, int startVertexIndex,int noOfVertices)
 {
 
 	try
 	{
+		
 		Graph *vertexToRemoveNext = nullptr;
 		Graph *vertexToRemovePrev = nullptr;
 
@@ -347,7 +350,7 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 		EdgePairs *newEdgeToIsert = new EdgePairs();
 		newEdgeToIsert->startVertex = startVertexIndex + 1;
 		newEdgeToIsert->endVertex = endVertexIndex;
-
+		
 		if (nextStack == nullptr)
 		{
 			nextStack = new Stack();
@@ -372,6 +375,8 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 				}
 			}
 		}
+
+		
 
 		//Write code to remove the vertex
 		vertexToRemoveNext = G[startVertexIndex];
@@ -422,7 +427,30 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 		}
 		else
 		{
+			//cout << tempStartVertex << endl;
+			//if (tempStartVertex == 173)
+			//{
+			//	cout << "Investigate before the crash happens.........................khdsfh"<<turns++<< endl;
+			//}
+			//if (turns == 25)
+			//{
+			//	cout << "Start tracking" << turns_level1++<< endl;
+			//	
+			//	
+			//}
+			//if (turns_level1 == 21)
+			//{
+			//	cout << "Do we need further tracking???" << endl;
+			//}
 			pStack = FindEulerCircuit(G, pStack, pCircuit, tempStartVertex, noOfVertices);
+			//cout << "I did not crash point 3:" << endl;
+			//Stack *temp1 = pCircuit;
+			//while (temp1 != nullptr)
+			//{
+			//	cout << "(" << temp1->reverseNode.startVertex << "," << temp1->reverseNode.endVertex << ")" << endl;
+			//	temp1 = temp1->next;
+			//}
+			
 			if (pStack->CircuitGenerationComplete == true)
 			{
 
@@ -470,7 +498,9 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 				//cout << temp->reverseNode.startVertex << temp->reverseNode.endVertex;
 				//Do a Euler pass on the new Startvertex. If any exist.
 				int endvertexStack1 = (temp->reverseNode.endVertex - 1);
+				//cout << "I Crash after this point 1:" << endl;
 				Stack1 = Helper_function::FindEulerCircuit(G, Stack1, Circuit1, endvertexStack1, noOfVertices);
+				//cout << "I did not crash point 2:" << endl;
 				if (Stack1->CircuitGenerationComplete == true)
 				{
 
