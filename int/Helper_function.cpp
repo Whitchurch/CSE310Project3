@@ -547,6 +547,7 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 		{
 			if (pCircuit->reverseNode.isVirtual == true)
 			{
+
 				if (pCircuit->reverseNode.startVertex == traverser->startVertex && pCircuit->reverseNode.endVertex == traverser->endVertex|| pCircuit->reverseNode.startVertex == traverser->endVertex && pCircuit->reverseNode.endVertex == traverser->startVertex)
 				{
 					if (traverser->weight > 1)

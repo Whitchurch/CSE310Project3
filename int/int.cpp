@@ -409,6 +409,10 @@ int main(int argc, char *argv[])
 			
 			//Push in a change
 			//cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
+			//if (navigatePointer->reverseNode.startVertex == 261 && navigatePointer->reverseNode.endVertex == 268)
+			//{
+			//	cout << "Item found" << endl;
+			//}
 			Helper_function::expandVirtualNode(navigatePointer, greedyList);
 			navigatePointer = navigatePointer->next;
 		}
