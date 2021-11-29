@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "Stack.h"
-#include "EdgePairs.h"
+//#include "EdgePairs.h"
 #include "weightedEdges.h"
 #include "oddDegreeVertices.h"
 #include "Helper_function.h"
@@ -409,10 +409,10 @@ int main(int argc, char *argv[])
 			
 			//Push in a change
 			//cout << navigatePointer->reverseNode.startVertex << navigatePointer->reverseNode.endVertex << endl;
-			//if (navigatePointer->reverseNode.startVertex == 261 && navigatePointer->reverseNode.endVertex == 268)
-			//{
-			//	cout << "Item found" << endl;
-			//}
+			if (navigatePointer->reverseNode.startVertex == 232 && navigatePointer->reverseNode.endVertex == 285)
+			{
+				int tempNonsense = 0;
+			}
 			Helper_function::expandVirtualNode(navigatePointer, greedyList);
 			navigatePointer = navigatePointer->next;
 		}

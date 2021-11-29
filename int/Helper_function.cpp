@@ -436,29 +436,9 @@ Stack* Helper_function::FindEulerCircuit(Graph ** G, Stack * pStack, Stack * pCi
 		}
 		else
 		{
-			//cout << tempStartVertex << endl;
-			//if (tempStartVertex == 173)
-			//{
-			//	cout << "Investigate before the crash happens.........................khdsfh"<<turns++<< endl;
-			//}
-			//if (turns == 25)
-			//{
-			//	cout << "Start tracking" << turns_level1++<< endl;
-			//	
-			//	
-			//}
-			//if (turns_level1 == 21)
-			//{
-			//	cout << "Do we need further tracking???" << endl;
-			//}
+
 			pStack = FindEulerCircuit(G, pStack, pCircuit, tempStartVertex, noOfVertices, EdgesToInsert);
-			//cout << "I did not crash point 3:" << endl;
-			//Stack *temp1 = pCircuit;
-			//while (temp1 != nullptr)
-			//{
-			//	cout << "(" << temp1->reverseNode.startVertex << "," << temp1->reverseNode.endVertex << ")" << endl;
-			//	temp1 = temp1->next;
-			//}
+
 			
 			if (pStack->CircuitGenerationComplete == true)
 			{
@@ -566,10 +546,45 @@ void Helper_function::expandVirtualNode(Stack * pCircuit, weightedEdges * greedy
 
 			if (canExpand == true)
 			{
+				weightedEdges *tempFlipper = nullptr;
+				weightedEdges *prevtempFlipper = nullptr;
 				while (traverser->expansionSubPaths != nullptr)
 				{
-					cout <<"\t"<<"("<<traverser->expansionSubPaths->startVertex<<"," << traverser->expansionSubPaths->endVertex<<")"<< endl;
-					traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+					//Put the reversal logic here:
+					//Swap individual elements.
+					//Create a insert in head type deal, for the reversal.
+
+					//cout << "\t" << "(" << traverser->expansionSubPaths->startVertex << "," << traverser->expansionSubPaths->endVertex << ")" << endl;
+					//traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+
+					if (pCircuit->reverseNode.startVertex == traverser->expansionSubPaths->endVertex || pCircuit->reverseNode.endVertex == traverser->expansionSubPaths->startVertex)
+					{
+						//cout << "Flip this entry" << endl;
+						
+						tempFlipper = new weightedEdges[traverser->weight];
+						for (int i = 0; i < traverser->weight; i++)
+						{
+							tempFlipper[i].startVertex = traverser->expansionSubPaths->endVertex;
+							tempFlipper[i].endVertex = traverser->expansionSubPaths->startVertex;
+							traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+							if (traverser->expansionSubPaths == nullptr)
+							{
+								break;
+							}
+						}
+
+						for (int i = (traverser->weight-1); i >= 0; i--)
+						{
+							cout << "\t" << "(" << tempFlipper[i].startVertex << "," << tempFlipper[i].endVertex << ")" << endl;
+						}
+						
+						
+					}
+					else
+					{
+						cout << "\t" << "(" << traverser->expansionSubPaths->startVertex << "," << traverser->expansionSubPaths->endVertex << ")" << endl;
+						traverser->expansionSubPaths = traverser->expansionSubPaths->next;
+					}
 					
 				}
 				break;
